@@ -235,3 +235,107 @@ p.info {
     flex-direction: column-reverse;
     justify-content: space-evenly; /* Vãos iguais — ordem invertida */
 }
+
+/*<<<<<<<---------------------=================================== ESTILOS PARA HTML-CSS-BASICS ---------------------===================================>>>>>>> */
+
+/* Bloco de notas - estilo similar aos containers flex */
+.note-block {
+    background-color: rgb(30, 30, 30);
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 4px solid #FFD700;
+    border-radius: 4px;
+}
+
+.note-block p {
+    margin: 5px 0;
+    line-height: 1.6;
+}
+
+/* Bloco de código */
+.code-block {
+    background-color: #1e1e1e;
+    padding: 15px;
+    margin: 10px 0;
+    border-left: 4px solid #4CAF50;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.code-block pre {
+    margin: 0;
+    font-family: 'Courier New', monospace;
+    font-size: 13px;
+    color: #d4d4d4;
+}
+
+/* Bloco de demonstração */
+.demo-block {
+    background-color: rgb(20, 20, 20);
+    padding: 20px;
+    margin: 10px 0;
+    border: 1px solid #444;
+    border-radius: 4px;
+}
+
+.demo-block h1, .demo-block h2, .demo-block h3, 
+.demo-block h4, .demo-block h5, .demo-block h6 {
+    color: #FFD700;
+    margin-top: 0;
+}
+
+.demo-block p {
+    color: #eee;
+}
+
+.demo-block a {
+    color: #4CAF50;
+    text-decoration: none;
+}
+
+.demo-block a:hover {
+    text-decoration: underline;
+}
+
+/* Bloco de tabela */
+.table-block {
+    background-color: rgb(20, 20, 20);
+    padding: 15px;
+    margin: 10px 0;
+    border: 1px solid #444;
+    border-radius: 4px;
+    overflow-x: auto;
+}
+
+.table-block table {
+    width: 100%;
+    border-collapse: collapse;
+    color: #eee;
+}
+
+.table-block th {
+    background-color: #333;
+    color: #FFD700;
+    padding: 10px;
+    text-align: left;
+    border-bottom: 2px solid #444;
+}
+
+.table-block td {
+    padding: 10px;
+    border-bottom: 1px solid #333;
+}
+
+.table-block tr:last-child td {
+    border-bottom: none;
+}
+
+.table-block tr:hover {
+    background-color: #2a2a2a;
+}
+
+/* Estilização de strong nos note-blocks */
+.note-block strong {
+    color: #FFD700;
+    font-weight: bold;
+}

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Curso HTML & CSS - UC2 Aula 2</title>
+    <link rel="stylesheet" href="html/css/dashboard-style.css">
+    <style>
+        .favorite-star {
+            position: absolute;
+            top: 15px;
+            right: 15px;
+            font-size: 24px;
+            cursor: pointer;
+            color: #ccc;
+            transition: all 0.3s ease;
+            z-index: 10;
+            background: rgba(255, 255, 255, 0.9);
+            border-radius: 50%;
+            width: 35px;
+            height: 35px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .favorite-star:hover {
+            transform: scale(1.2);
+        }
+
+        .favorite-star.active {
+            color: #f1c40f;
+        }
+
+        .lesson-card {
+            position: relative;
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+
+    <div class="dashboard">
+
+        <!-- Coluna Lateral Esquerda -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="m">Prog</span><span class="u">rama</span><span class="r">ção</span><br/><span class="">FULL</span><span class="i">STACK
+
+                </span>
+            </div>
+
+            <div class="notebook-actions">
+                <button class="btn-novo-caderno" onclick="createNewNotebook()">
+                    <span class="plus">+</span> NOVO CADERNO
+                </button>
+                <button class="btn-dropdown" onclick="window.location.href='html/cadernos.html'" aria-label="Opções">▼</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                    PAGINA PRINCIPAL
+                </a>
+                <a href="html/cadernos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    Recentes
+                </a>
+                <a href="html/favoritos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                    Favoritos
+                </a>
+                <a href="html/modulos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Módulos
+                </a>
+                <a href="html/desafios.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Desafios
+                </a>
+            </nav>
+
+            
+</aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="main-area">
+
+            <!-- Banner Superior -->
+            <header class="banner">
+                <h1>Curso HTML & CSS - UC2 Aula 2</h1>
+                <p>Domine o desenvolvimento web com aulas completas, visuais e interativas</p>
+            </header>
+
+            <!-- Faixa de Módulos -->
+             <h2>Módulos Acessados Recentemente</h2>
+            <section class="modules-strip">
+                <a href="html/modulo-1-fundamentos-html.html" class="module-card lilac">
+                    <span class="module-icon">💡</span>
+                    <span class="module-title">Fundamentos HTML</span>
+                </a>
+                <a href="html/modulo-2-css-basico.html" class="module-card green">
+                    <span class="module-icon">🎨</span>
+                    <span class="module-title">CSS Básico</span>
+                </a>
+                <a href="html/modulo-3-layout-posicionamento.html" class="module-card purple">
+                    <span class="module-icon">🔧</span>
+                    <span class="module-title">Layout e Posicionamento</span>
+                </a>
+                <a href="html/modulo-4-ferramentas-versionamento.html" class="module-card yellow">
+                    <span class="module-icon">�</span>
+                    <span class="module-title">Ferramentas e Versionamento</span>
+                </a>
+                <div class="module-card yellow">
+                    <span class="module-icon">📦</span>
+                    <span class="module-title">Ferramentas e Versionamento</span>
+                    
+                </div>
+                <div class="module-card yellow">
+                    <span class="module-icon">📦</span>
+                    <span class="module-title">Ferramentas e Versionamento</span>
+                </div>
+            </section>
+            </section>
+
+            <!-- Grade de Aulas gerais-->
+            <section class="lessons-area">
+                <div class="lessons-grid" id="lessonsGrid">
+
+                    <a href="html/aula-1-listas.html" class="lesson-card" id="card-aula-1" data-lesson="aula-1">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-1', 'Listas em HTML', 'Aprenda a organizar informações com listas ordenadas e não ordenadas.', 'html/aula-1-listas.html')">★</span>
+                        <span class="lesson-badge">Aula 1</span>
+                        <h3>Listas em HTML</h3>
+                        <p>Aprenda a organizar informações com listas ordenadas e não ordenadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">UL</span>
+                            <span class="lesson-tag">OL</span>
+                            <span class="lesson-tag">LI</span>
+                            <span class="lesson-tag">Aninhadas</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-2-css-basico.html" class="lesson-card" id="card-aula-2" data-lesson="aula-2">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-2', 'CSS Básico', 'Entenda os três tipos de CSS e como aplicá-los em suas páginas.', 'html/aula-2-css-basico.html')">★</span>
+                        <span class="lesson-badge">Aula 2</span>
+                        <h3>CSS Básico</h3>
+                        <p>Entenda os três tipos de CSS e como aplicá-los em suas páginas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">Interno</span>
+                            <span class="lesson-tag">Externo</span>
+                            <span class="lesson-tag">Seletores</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-3-propriedades-css.html" class="lesson-card" id="card-aula-3" data-lesson="aula-3">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-3', 'Propriedades CSS Essenciais', 'Domine as propriedades fundamentais para estilizar texto e elementos.', 'html/aula-3-propriedades-css.html')">★</span>
+                        <span class="lesson-badge">Aula 3</span>
+                        <h3>Propriedades CSS Essenciais</h3>
+                        <p>Domine as propriedades fundamentais para estilizar texto e elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Color</span>
+                            <span class="lesson-tag">Background</span>
+                            <span class="lesson-tag">Font</span>
+                            <span class="lesson-tag">Cores</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-4-classes-ids.html" class="lesson-card" id="card-aula-4" data-lesson="aula-4">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-4', 'Classes e IDs', 'Aprenda a usar seletores CSS para estilizar elementos específicos.', 'html/aula-4-classes-ids.html')">★</span>
+                        <span class="lesson-badge">Aula 4</span>
+                        <h3>Classes e IDs</h3>
+                        <p>Aprenda a usar seletores CSS para estilizar elementos específicos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Classes</span>
+                            <span class="lesson-tag">IDs</span>
+                            <span class="lesson-tag">Seletores</span>
+                            <span class="lesson-tag">Bordas</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-5-box-model.html" class="lesson-card" id="card-aula-5" data-lesson="aula-5">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-5', 'Box Model', 'Entenda como funciona o modelo de caixa: margin, padding e border.', 'html/aula-5-box-model.html')">★</span>
+                        <span class="lesson-badge">Aula 5</span>
+                        <h3>Box Model</h3>
+                        <p>Entenda como funciona o modelo de caixa: margin, padding e border.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Margin</span>
+                            <span class="lesson-tag">Padding</span>
+                            <span class="lesson-tag">Border</span>
+                            <span class="lesson-tag">Box-sizing</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-6-display-div-span.html" class="lesson-card" id="card-aula-6" data-lesson="aula-6">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-6', 'Display, DIV e SPAN', 'Diferença entre elementos block e inline, e quando usar DIV ou SPAN.', 'html/aula-6-display-div-span.html')">★</span>
+                        <span class="lesson-badge">Aula 6</span>
+                        <h3>Display, DIV e SPAN</h3>
+                        <p>Diferença entre elementos block e inline, e quando usar DIV ou SPAN.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Block</span>
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">DIV</span>
+                            <span class="lesson-tag">SPAN</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-7-position-zindex.html" class="lesson-card" id="card-aula-7" data-lesson="aula-7">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-7', 'Posição e Camadas', 'Aprenda position, z-index e como controlar a sobreposição de elementos.', 'html/aula-7-position-zindex.html')">★</span>
+                        <span class="lesson-badge">Aula 7</span>
+                        <h3>Posição e Camadas</h3>
+                        <p>Aprenda position, z-index e como controlar a sobreposição de elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Relative</span>
+                            <span class="lesson-tag">Absolute</span>
+                            <span class="lesson-tag">Fixed</span>
+                            <span class="lesson-tag">Z-index</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-8-flexbox.html" class="lesson-card" id="card-aula-8" data-lesson="aula-8">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-8', 'Flexbox', 'Domine o layout flexível com flex container, items, justify e align.', 'html/aula-8-flexbox.html')">★</span>
+                        <span class="lesson-badge">Aula 8</span>
+                        <h3>Flexbox</h3>
+                        <p>Domine o layout flexível com flex container, items, justify e align.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Flex</span>
+                            <span class="lesson-tag">Justify</span>
+                            <span class="lesson-tag">Align</span>
+                            <span class="lesson-tag">Gap</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-9-semantic-html.html" class="lesson-card" id="card-aula-9" data-lesson="aula-9">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-9', 'HTML Semântico', 'Use tags semânticas para estruturar páginas acessíveis e organizadas.', 'html/aula-9-semantic-html.html')">★</span>
+                        <span class="lesson-badge">Aula 9</span>
+                        <h3>HTML Semântico</h3>
+                        <p>Use tags semânticas para estruturar páginas acessíveis e organizadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Header</span>
+                            <span class="lesson-tag">Main</span>
+                            <span class="lesson-tag">Footer</span>
+                            <span class="lesson-tag">Nav</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-10-formularios.html" class="lesson-card" id="card-aula-10" data-lesson="aula-10">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-10', 'Formulários e Tabelas', 'Crie formulários interativos e tabelas organizadas com HTML.', 'html/aula-10-formularios.html')">★</span>
+                        <span class="lesson-badge">Aula 10</span>
+                        <h3>Formulários e Tabelas</h3>
+                        <p>Crie formulários interativos e tabelas organizadas com HTML.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Inputs</span>
+                            <span class="lesson-tag">Labels</span>
+                            <span class="lesson-tag">Tables</span>
+                            <span class="lesson-tag">Forms</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-11-git-github.html" class="lesson-card" id="card-aula-11" data-lesson="aula-11">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-11', 'Git e GitHub', 'Versione seu código com Git e publique projetos no GitHub.', 'html/aula-11-git-github.html')">★</span>
+                        <span class="lesson-badge">Aula 11</span>
+                        <h3>Git e GitHub</h3>
+                        <p>Versione seu código com Git e publique projetos no GitHub.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Commit</span>
+                            <span class="lesson-tag">Push</span>
+                            <span class="lesson-tag">Pull</span>
+                            <span class="lesson-tag">Branch</span>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Widgets Flutuantes -->
+    <div class="floating-widgets" id="floatingWidgets">
+
+        <!-- Widget de Progresso -->
+        <div class="progress-widget">
+            <div class="progress-widget-header">
+                <span class="pie-icon">📊</span>
+                <h2>Seu Progresso</h2>
+            </div>
+            <div class="progress-divider"></div>
+            <p>Complete as aulas para acompanhar sua evolução no curso</p>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressFill"></div>
+                <span class="progress-bar-label" id="progressLabel">0/11 Aulas</span>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="completed-count">0</div>
+                    <div class="stat-label">Aulas Completadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="points-count">0</div>
+                    <div class="stat-label">Pontos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="streak-count">0</div>
+                    <div class="stat-label">Dias Consecutivos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget de Horário e Calendário -->
+        <div class="clock-widget">
+            <div class="clock-header">
+                <div class="clock-time" id="clock">00:00:00</div>
+                <div class="clock-label">Horário de Brasília</div>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-month" id="calendar-month-year">Junho 2024</div>
+                <div class="calendar-weekdays">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+                    <span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div class="calendar-days" id="calendar-days"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botão Seta Flutuante -->
+    <button class="floating-toggle-btn" onclick="toggleFloatingWidgets()" aria-label="Toggle Widgets">
+        <span id="toggleIcon">◀</span>
+    </button>
+
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function toggleFloatingWidgets() {
+            const widgets = document.getElementById('floatingWidgets');
+            const toggleBtn = document.querySelector('.floating-toggle-btn');
+            const toggleIcon = document.getElementById('toggleIcon');
+            widgets.classList.toggle('visible');
+            toggleBtn.classList.toggle('widgets-visible');
+            
+            if (widgets.classList.contains('visible')) {
+                toggleIcon.textContent = '▶';
+            } else {
+                toggleIcon.textContent = '◀';
+            }
+        }
+
+        function createNewNotebook() {
+            const title = prompt('Nome do caderno:');
+            if (title && title.trim()) {
+                const notebook = {
+                    id: Date.now(),
+                    title: title.trim(),
+                    content: '',
+                    date: new Date().toLocaleDateString('pt-BR')
+                };
+                const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                notebooks.unshift(notebook);
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                window.location.href = `html/cadernos.html?id=${notebook.id}`;
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const brasilia = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            const h = String(brasilia.getHours()).padStart(2, '0');
+            const m = String(brasilia.getMinutes()).padStart(2, '0');
+            const s = String(brasilia.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        }
+
+        function updateCalendar() {
+            const now = new Date();
+            const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                            'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+
+            document.getElementById('calendar-month-year').textContent =
+                `${months[month]} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const container = document.getElementById('calendar-days');
+            container.innerHTML = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                container.appendChild(empty);
+            }
+
+            const highlightDays = [22, 29];
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const el = document.createElement('div');
+                el.className = 'calendar-day';
+                el.textContent = day;
+
+                if (day === today) {
+                    el.classList.add('today');
+                } else if (highlightDays.includes(day)) {
+                    el.classList.add('highlight');
+                }
+
+                container.appendChild(el);
+            }
+        }
+
+        function updateProgress() {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const total = 11;
+            const count = completed.length > 0 ? completed.length : 2;
+            const pct = (count / total) * 100;
+
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = `${count}/${total} Aulas`;
+            document.getElementById('completed-count').textContent = count;
+            document.getElementById('points-count').textContent = count * 10;
+            document.getElementById('streak-count').textContent = 0;
+        }
+
+        function loadCompletedLessons() {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            completed.forEach(id => {
+                const card = document.getElementById(`card-${id}`);
+                if (card) card.classList.add('completed');
+            });
+        }
+
+        function toggleFavorite(type, id, title, description, url) {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const existingIndex = favorites.findIndex(fav => fav.id === id);
+
+            if (existingIndex !== -1) {
+                favorites.splice(existingIndex, 1);
+            } else {
+                favorites.push({
+                    type: type,
+                    id: id,
+                    title: title,
+                    description: description,
+                    url: url,
+                    date: new Date().toLocaleDateString('pt-BR')
+                });
+            }
+
+            localStorage.setItem('favorites', JSON.stringify(favorites));
+            updateFavoriteStars();
+        }
+
+        function updateFavoriteStars() {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const stars = document.querySelectorAll('.favorite-star');
+
+            stars.forEach(star => {
+                const onclick = star.getAttribute('onclick');
+                const idMatch = onclick.match(/'([^']+)',\s*'([^']+)'/);
+                if (idMatch) {
+                    const id = idMatch[2];
+                    const isFavorite = favorites.some(fav => fav.id === id);
+                    star.classList.toggle('active', isFavorite);
+                }
+            });
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateClock();
+            updateCalendar();
+            updateProgress();
+            loadCompletedLessons();
+            updateFavoriteStars();
+            setInterval(updateClock, 1000);
+            setInterval(updateCalendar, 60000);
+        });
+    </script>
+</body>
+</html>

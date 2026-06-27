@@ -3,10 +3,76 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Flexbox</title>
+    <title>Meus Favoritos</title>
     <link rel="stylesheet" href="css/dashboard-style.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="img/icons8-css-96.png">
+    <style>
+        .favorites-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .favorites-header {
+            margin-bottom: 30px;
+        }
+
+        .favorites-header h1 {
+            color: var(--text-primary);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .favorites-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 20px;
+        }
+
+        .favorite-card {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+        }
+
+        .favorite-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+        }
+
+        .favorite-type {
+            font-size: 0.8em;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .favorite-title {
+            font-size: 1.2em;
+            color: var(--text-primary);
+            margin-bottom: 10px;
+        }
+
+        .favorite-description {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+            line-height: 1.5;
+        }
+
+        .empty-favorites {
+            text-align: center;
+            padding: 60px 20px;
+            color: var(--text-secondary);
+        }
+
+        .empty-favorites svg {
+            width: 80px;
+            height: 80px;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+    </style>
 </head>
 <body class="dashboard-body">
 
@@ -38,7 +104,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
                     Recentes
                 </a>
-                <a href="favoritos.html" class="nav-item">
+                <a href="favoritos.html" class="nav-item active">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
                     Favoritos
                 </a>
@@ -60,192 +126,23 @@
 
             <!-- Banner Superior -->
             <header class="banner">
-                <h1>Guia Flexbox</h1>
-                <p>Referência visual completa para Flexbox</p>
+                <h1>⭐ Meus Favoritos</h1>
+                <p>Cadernos e aulas marcados com estrela</p>
             </header>
 
-    <!--=================================== FLEX-ROW ===================================-->
-    <h2>▶ FLEX-ROW</h2>
+            <div class="favorites-container">
+                <div class="favorites-grid" id="favoritesGrid">
+                    <!-- Os favoritos serão carregados dinamicamente -->
+                </div>
 
-    <p class="info">flex1 — justify-content: flex-start (padrão, agrupa à esquerda)</p>
-    <div class="flex1">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex2 — justify-content: flex-end (agrupa à direita)</p>
-    <div class="flex2">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex3 — justify-content: center (agrupa no meio)</p>
-    <div class="flex3">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex4 — justify-content: space-between (gruda nas pontas)</p>
-    <div class="flex4">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex5 — justify-content: space-around (espaço nas laterais de cada item)</p>
-    <div class="flex5">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex6 — justify-content: space-evenly (todos os vãos iguais)</p>
-    <div class="flex6">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-
-    <!--=================================== FLEX-ROW REVERSE ===================================-->
-    <h2>◀ FLEX-ROW-REVERSE &nbsp;⚠️ A ordem visual é invertida: Q3 aparece primeiro!</h2>
-
-    <p class="info">flex7 — row-reverse + flex-start → agrupa à DIREITA (início = direita quando invertido)</p>
-    <div class="flex7">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex8 — row-reverse + flex-end → agrupa à ESQUERDA (fim = esquerda quando invertido)</p>
-    <div class="flex8">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex9 — row-reverse + center → centro (igual ao row normal, só muda a ordem)</p>
-    <div class="flex9">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex10 — row-reverse + space-between → pontas grudadas, ordem invertida</p>
-    <div class="flex10">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex11 — row-reverse + space-around → espaço ao redor, ordem invertida</p>
-    <div class="flex11">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex12 — row-reverse + space-evenly → vãos iguais, ordem invertida</p>
-    <div class="flex12">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-
-    <!--=================================== FLEX-COLUMN ===================================-->
-    <h2>▼ FLEX-COLUMN &nbsp; justify-content agora controla o eixo VERTICAL</h2>
-
-    <p class="info">flex13 — column + flex-start → empilha no TOPO</p>
-    <div class="flex13">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex14 — column + flex-end → empilha na BASE</p>
-    <div class="flex14">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex15 — column + center → agrupa no MEIO vertical</p>
-    <div class="flex15">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex16 — column + space-between → Q1 no topo, Q3 na base, Q2 no meio</p>
-    <div class="flex16">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex17 — column + space-around → espaço vertical em volta de cada item</p>
-    <div class="flex17">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex18 — column + space-evenly → todos os vãos verticais iguais</p>
-    <div class="flex18">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-
-    <!--=================================== FLEX-COLUMN REVERSE ===================================-->
-    <h2>▲ FLEX-COLUMN-REVERSE &nbsp;⚠️ Q1 fica embaixo, Q3 fica em cima!</h2>
-
-    <p class="info">flex19 — column-reverse + flex-start → agrupa na BASE (início = baixo quando invertido)</p>
-    <div class="flex19">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex20 — column-reverse + flex-end → agrupa no TOPO (fim = cima quando invertido)</p>
-    <div class="flex20">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex21 — column-reverse + center → centro vertical, ordem invertida</p>
-    <div class="flex21">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex22 — column-reverse + space-between → Q1 embaixo, Q3 em cima, Q2 no meio</p>
-    <div class="flex22">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex23 — column-reverse + space-around → espaço ao redor, ordem invertida</p>
-    <div class="flex23">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex24 — column-reverse + space-evenly → vãos iguais, ordem invertida</p>
-    <div class="flex24">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
+                <div class="empty-favorites" id="emptyFavorites">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
+                        <path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/>
+                    </svg>
+                    <h2>Nenhum favorito ainda</h2>
+                    <p>Marque cadernos e aulas com estrela para vê-los aqui</p>
+                </div>
+            </div>
 
         </main>
     </div>
@@ -400,10 +297,34 @@
             document.getElementById('streak-count').textContent = 0;
         }
 
+        function loadFavorites() {
+            const favorites = JSON.parse(localStorage.getItem('favorites') || '[]');
+            const grid = document.getElementById('favoritesGrid');
+            const empty = document.getElementById('emptyFavorites');
+
+            if (favorites.length === 0) {
+                grid.style.display = 'none';
+                empty.style.display = 'block';
+                return;
+            }
+
+            grid.style.display = 'grid';
+            empty.style.display = 'none';
+
+            grid.innerHTML = favorites.map(fav => `
+                <a href="${fav.url}" class="favorite-card">
+                    <div class="favorite-type">${fav.type}</div>
+                    <div class="favorite-title">${fav.title}</div>
+                    <div class="favorite-description">${fav.description}</div>
+                </a>
+            `).join('');
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             updateClock();
             updateCalendar();
             updateProgress();
+            loadFavorites();
             setInterval(updateClock, 1000);
             setInterval(updateCalendar, 60000);
         });

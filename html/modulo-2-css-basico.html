@@ -3,10 +3,172 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Guia Flexbox</title>
+    <title>Módulo 2: CSS Básico</title>
     <link rel="stylesheet" href="css/dashboard-style.css">
-    <link rel="stylesheet" href="css/style.css">
-    <link rel="icon" type="image/png" href="img/icons8-css-96.png">
+    <style>
+        .module-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        .module-header {
+            margin-bottom: 30px;
+        }
+
+        .module-header h1 {
+            color: var(--text-primary);
+            font-size: 2em;
+            margin-bottom: 10px;
+        }
+
+        .module-header p {
+            color: var(--text-secondary);
+            font-size: 1.1em;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 20px;
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+            text-decoration: none;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            background: var(--accent-color);
+            color: white;
+        }
+
+        .lessons-list {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .lesson-item {
+            background: var(--bg-secondary);
+            border-radius: 15px;
+            padding: 25px;
+            border: 1px solid var(--border-color);
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            gap: 20px;
+        }
+
+        .lesson-item:hover {
+            transform: translateX(10px);
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        }
+
+        .lesson-number {
+            background: var(--accent-gradient);
+            color: white;
+            width: 60px;
+            height: 60px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.5em;
+            font-weight: 700;
+            flex-shrink: 0;
+        }
+
+        .lesson-content {
+            flex: 1;
+        }
+
+        .lesson-content h3 {
+            font-size: 1.3em;
+            color: var(--text-primary);
+            margin-bottom: 8px;
+        }
+
+        .lesson-content p {
+            color: var(--text-secondary);
+            margin-bottom: 10px;
+        }
+
+        .lesson-tags {
+            display: flex;
+            gap: 8px;
+            flex-wrap: wrap;
+        }
+
+        .lesson-tag {
+            background: var(--bg-primary);
+            color: var(--text-secondary);
+            padding: 4px 12px;
+            border-radius: 20px;
+            font-size: 0.85em;
+            font-weight: 500;
+        }
+
+        .lesson-btn {
+            padding: 12px 24px;
+            background: var(--accent-gradient);
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .lesson-btn:hover {
+            transform: scale(1.05);
+            box-shadow: 0 5px 15px rgba(123, 47, 247, 0.3);
+        }
+
+        .progress-bar {
+            background: var(--bg-primary);
+            height: 8px;
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+
+        .progress-fill {
+            background: var(--accent-gradient);
+            height: 100%;
+            border-radius: 4px;
+            transition: width 0.3s ease;
+        }
+
+        .module-stats {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin-top: 20px;
+        }
+
+        .stat-card {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 12px;
+            border: 1px solid var(--border-color);
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2em;
+            font-weight: 700;
+            color: var(--accent-color);
+            margin-bottom: 5px;
+        }
+
+        .stat-label {
+            color: var(--text-secondary);
+            font-size: 0.9em;
+        }
+    </style>
 </head>
 <body class="dashboard-body">
 
@@ -42,7 +204,7 @@
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
                     Favoritos
                 </a>
-                <a href="modulos.html" class="nav-item">
+                <a href="modulos.html" class="nav-item active">
                     <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
                     Módulos
                 </a>
@@ -60,191 +222,77 @@
 
             <!-- Banner Superior -->
             <header class="banner">
-                <h1>Guia Flexbox</h1>
-                <p>Referência visual completa para Flexbox</p>
+                <h1>🎨 Módulo 2: CSS Básico</h1>
+                <p>Domine os fundamentos de CSS para estilizar suas páginas web com cores, fontes e seletores</p>
             </header>
 
-    <!--=================================== FLEX-ROW ===================================-->
-    <h2>▶ FLEX-ROW</h2>
+            <div class="module-container">
 
-    <p class="info">flex1 — justify-content: flex-start (padrão, agrupa à esquerda)</p>
-    <div class="flex1">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
+        <div class="module-stats">
+            <div class="stat-card">
+                <div class="stat-number">3</div>
+                <div class="stat-label">Aulas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number" id="completed-count">0/3</div>
+                <div class="stat-label">Concluídas</div>
+            </div>
+            <div class="stat-card">
+                <div class="stat-number">Iniciante</div>
+                <div class="stat-label">Nível</div>
+            </div>
+        </div>
 
-    <p class="info">flex2 — justify-content: flex-end (agrupa à direita)</p>
-    <div class="flex2">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
+        <div class="progress-bar">
+            <div class="progress-fill" id="moduleProgress" style="width: 0%"></div>
+        </div>
 
-    <p class="info">flex3 — justify-content: center (agrupa no meio)</p>
-    <div class="flex3">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
+        <div class="lessons-list">
+            <div class="lesson-item" id="lesson-1">
+                <div class="lesson-number">2</div>
+                <div class="lesson-content">
+                    <h3>CSS Básico</h3>
+                    <p>Entenda os três tipos de CSS (inline, interno e externo) e como aplicá-los em suas páginas.</p>
+                    <div class="lesson-tags">
+                        <span class="lesson-tag">Inline</span>
+                        <span class="lesson-tag">Interno</span>
+                        <span class="lesson-tag">Externo</span>
+                        <span class="lesson-tag">Seletores</span>
+                    </div>
+                </div>
+                <a href="aula-2-css-basico.html" class="lesson-btn">Acessar Aula</a>
+            </div>
 
-    <p class="info">flex4 — justify-content: space-between (gruda nas pontas)</p>
-    <div class="flex4">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
+            <div class="lesson-item" id="lesson-2">
+                <div class="lesson-number">3</div>
+                <div class="lesson-content">
+                    <h3>Propriedades CSS Essenciais</h3>
+                    <p>Domine as propriedades fundamentais para estilizar texto e elementos como color, background e font.</p>
+                    <div class="lesson-tags">
+                        <span class="lesson-tag">Color</span>
+                        <span class="lesson-tag">Background</span>
+                        <span class="lesson-tag">Font</span>
+                        <span class="lesson-tag">Cores</span>
+                    </div>
+                </div>
+                <a href="aula-3-propriedades-css.html" class="lesson-btn">Acessar Aula</a>
+            </div>
 
-    <p class="info">flex5 — justify-content: space-around (espaço nas laterais de cada item)</p>
-    <div class="flex5">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex6 — justify-content: space-evenly (todos os vãos iguais)</p>
-    <div class="flex6">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-
-    <!--=================================== FLEX-ROW REVERSE ===================================-->
-    <h2>◀ FLEX-ROW-REVERSE &nbsp;⚠️ A ordem visual é invertida: Q3 aparece primeiro!</h2>
-
-    <p class="info">flex7 — row-reverse + flex-start → agrupa à DIREITA (início = direita quando invertido)</p>
-    <div class="flex7">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex8 — row-reverse + flex-end → agrupa à ESQUERDA (fim = esquerda quando invertido)</p>
-    <div class="flex8">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex9 — row-reverse + center → centro (igual ao row normal, só muda a ordem)</p>
-    <div class="flex9">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex10 — row-reverse + space-between → pontas grudadas, ordem invertida</p>
-    <div class="flex10">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex11 — row-reverse + space-around → espaço ao redor, ordem invertida</p>
-    <div class="flex11">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex12 — row-reverse + space-evenly → vãos iguais, ordem invertida</p>
-    <div class="flex12">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-
-    <!--=================================== FLEX-COLUMN ===================================-->
-    <h2>▼ FLEX-COLUMN &nbsp; justify-content agora controla o eixo VERTICAL</h2>
-
-    <p class="info">flex13 — column + flex-start → empilha no TOPO</p>
-    <div class="flex13">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex14 — column + flex-end → empilha na BASE</p>
-    <div class="flex14">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex15 — column + center → agrupa no MEIO vertical</p>
-    <div class="flex15">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex16 — column + space-between → Q1 no topo, Q3 na base, Q2 no meio</p>
-    <div class="flex16">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex17 — column + space-around → espaço vertical em volta de cada item</p>
-    <div class="flex17">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex18 — column + space-evenly → todos os vãos verticais iguais</p>
-    <div class="flex18">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-
-    <!--=================================== FLEX-COLUMN REVERSE ===================================-->
-    <h2>▲ FLEX-COLUMN-REVERSE &nbsp;⚠️ Q1 fica embaixo, Q3 fica em cima!</h2>
-
-    <p class="info">flex19 — column-reverse + flex-start → agrupa na BASE (início = baixo quando invertido)</p>
-    <div class="flex19">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex20 — column-reverse + flex-end → agrupa no TOPO (fim = cima quando invertido)</p>
-    <div class="flex20">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex21 — column-reverse + center → centro vertical, ordem invertida</p>
-    <div class="flex21">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex22 — column-reverse + space-between → Q1 embaixo, Q3 em cima, Q2 no meio</p>
-    <div class="flex22">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex23 — column-reverse + space-around → espaço ao redor, ordem invertida</p>
-    <div class="flex23">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
-    </div>
-
-    <p class="info">flex24 — column-reverse + space-evenly → vãos iguais, ordem invertida</p>
-    <div class="flex24">
-        <div class="quadrado1">Q1</div>
-        <div class="quadrado2">Q2</div>
-        <div class="quadrado3">Q3</div>
+            <div class="lesson-item" id="lesson-3">
+                <div class="lesson-number">4</div>
+                <div class="lesson-content">
+                    <h3>Classes e IDs</h3>
+                    <p>Aprenda a usar seletores CSS para estilizar elementos específicos com classes, IDs e bordas.</p>
+                    <div class="lesson-tags">
+                        <span class="lesson-tag">Classes</span>
+                        <span class="lesson-tag">IDs</span>
+                        <span class="lesson-tag">Seletores</span>
+                        <span class="lesson-tag">Bordas</span>
+                    </div>
+                </div>
+                <a href="aula-4-classes-ids.html" class="lesson-btn">Acessar Aula</a>
+            </div>
+        </div>
     </div>
 
         </main>
@@ -400,10 +448,35 @@
             document.getElementById('streak-count').textContent = 0;
         }
 
+        function updateModuleProgress() {
+            const moduleLessons = ['aula-2', 'aula-3', 'aula-4'];
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            
+            const completedInModule = moduleLessons.filter(lesson => completed.includes(lesson));
+            const progress = (completedInModule.length / moduleLessons.length) * 100;
+            
+            document.getElementById('moduleProgress').style.width = progress + '%';
+            document.getElementById('completed-count').textContent = `${completedInModule.length}/${moduleLessons.length}`;
+
+            // Marcar aulas concluídas
+            completedInModule.forEach(lessonId => {
+                const lessonIndex = moduleLessons.indexOf(lessonId);
+                if (lessonIndex !== -1) {
+                    const lessonElement = document.getElementById(`lesson-${lessonIndex + 1}`);
+                    if (lessonElement) {
+                        lessonElement.style.opacity = '0.7';
+                        lessonElement.querySelector('.lesson-btn').textContent = '✓ Concluída';
+                        lessonElement.querySelector('.lesson-btn').style.background = '#2ecc71';
+                    }
+                }
+            });
+        }
+
         document.addEventListener('DOMContentLoaded', () => {
             updateClock();
             updateCalendar();
             updateProgress();
+            updateModuleProgress();
             setInterval(updateClock, 1000);
             setInterval(updateCalendar, 60000);
         });

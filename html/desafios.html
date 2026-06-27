@@ -1,0 +1,817 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafios - Curso HTML & CSS</title>
+    <link rel="stylesheet" href="css/dashboard-style.css">
+    <style>
+        .challenge-tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            flex-wrap: wrap;
+        }
+
+        .challenge-tab {
+            padding: 15px 25px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .challenge-tab:hover {
+            background: var(--bg-tertiary);
+        }
+
+        .challenge-tab.active {
+            background: var(--accent-gradient);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        .challenges-container {
+            display: none;
+        }
+
+        .challenges-container.active {
+            display: block;
+        }
+
+        .challenge-category {
+            margin-bottom: 30px;
+        }
+
+        .category-header {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            padding: 15px;
+            background: var(--accent-gradient);
+            color: white;
+            border-radius: 10px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        /* Flashcards */
+        .flashcards-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .flashcard {
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 15px;
+            padding: 25px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            position: relative;
+            min-height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            box-shadow: var(--shadow);
+        }
+
+        .flashcard:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-primary);
+        }
+
+        .flashcard.flipped {
+            background: var(--accent-gradient);
+            color: white;
+        }
+
+        .flashcard-front,
+        .flashcard-back {
+            width: 100%;
+        }
+
+        .flashcard-front {
+            font-size: 1.1em;
+            font-weight: 600;
+        }
+
+        .flashcard-back {
+            font-size: 1em;
+        }
+
+        .flashcard-hint {
+            font-size: 0.8em;
+            opacity: 0.7;
+            margin-top: 10px;
+        }
+
+        /* Bloco para preencher */
+        .fill-in-blank {
+            background: var(--bg-secondary);
+            padding: 25px;
+            border-radius: 15px;
+            margin-bottom: 20px;
+            border: 1px solid var(--border-color);
+        }
+
+        .fill-in-question {
+            font-size: 1.1em;
+            margin-bottom: 20px;
+        }
+
+        .fill-input {
+            display: inline-block;
+            padding: 8px 15px;
+            margin: 0 5px;
+            border: 2px solid var(--accent-primary);
+            border-radius: 5px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            width: 150px;
+            text-align: center;
+        }
+
+        .fill-correct {
+            border-color: #2ecc71 !important;
+            background: rgba(46, 204, 113, 0.1) !important;
+        }
+
+        .fill-incorrect {
+            border-color: #e94560 !important;
+            background: rgba(233, 69, 96, 0.1) !important;
+        }
+
+        .fill-feedback {
+            margin-top: 15px;
+            padding: 10px 15px;
+            border-radius: 5px;
+            display: none;
+        }
+
+        .fill-feedback.correct {
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            display: block;
+        }
+
+        .fill-feedback.incorrect {
+            background: rgba(233, 69, 96, 0.2);
+            color: #e94560;
+            display: block;
+        }
+
+        .fill-action-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+            display: none;
+        }
+
+        .fill-action-button:hover {
+            opacity: 0.9;
+        }
+
+        .check-button {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: var(--accent-primary);
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: 500;
+        }
+
+        .check-button:hover {
+            opacity: 0.9;
+        }
+
+        .points-display {
+            background: var(--accent-gradient);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            text-align: center;
+            margin-bottom: 20px;
+            font-size: 1.2em;
+            font-weight: 600;
+        }
+
+        .category-prepared {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .category-prepared::after {
+            content: '📝 Conteúdo em preparação';
+            display: block;
+            font-size: 0.9em;
+            margin-top: 10px;
+            color: var(--text-secondary);
+        }
+
+        @media (max-width: 768px) {
+            .flashcards-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .fill-input {
+                width: 100px;
+            }
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+
+    <div class="dashboard">
+
+        <!-- Coluna Lateral Esquerda -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="m">Prog</span><span class="u">rama</span><span class="r">ção</span><br/><span class="">FULL</span><span class="i">STACK
+
+                </span>
+            </div>
+
+            <div class="notebook-actions">
+                <button class="btn-novo-caderno" onclick="createNewNotebook()">
+                    <span class="plus">+</span> NOVO CADERNO
+                </button>
+                <button class="btn-dropdown" onclick="window.location.href='cadernos.html'" aria-label="Opções">▼</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../aulas.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                    PAGINA PRINCIPAL
+                </a>
+                <a href="cadernos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    Recentes
+                </a>
+                <a href="favoritos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                    Favoritos
+                </a>
+                <a href="modulos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Módulos
+                </a>
+                <a href="desafios.html" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Desafios
+                </a>
+            </nav>
+
+            
+</aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="main-area">
+
+            <!-- Banner Superior -->
+            <header class="banner">
+                <h1>🎯 Desafios</h1>
+                <p>Teste seus conhecimentos com flashcards e exercícios interativos!</p>
+            </header>
+
+            <div class="points-display">
+                ⭐ Pontos Totais: <span id="total-challenge-points">0</span>
+            </div>
+
+            <div class="challenge-tabs">
+                <div class="challenge-tab active" data-level="beginner">🟢 Iniciante</div>
+                <div class="challenge-tab" data-level="intermediate">🟡 Intermediário</div>
+                <div class="challenge-tab" data-level="advanced">🔴 Avançado</div>
+            </div>
+
+            <!-- Nível Iniciante -->
+            <div class="challenges-container active" id="beginner">
+        <!-- HTML -->
+        <div class="challenge-category">
+            <div class="category-header">
+                <span>🌐</span>
+                <span>HTML Básico</span>
+            </div>
+            
+            <div class="flashcards-grid">
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        O que significa HTML?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        HyperText Markup Language - Linguagem de Marcação de Hipertexto
+                    </div>
+                </div>
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual tag cria parágrafos?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        &lt;p&gt;
+                    </div>
+                </div>
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual tag cria títulos principais?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        &lt;h1&gt; ao &lt;h6&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="fill-in-blank">
+                <div class="fill-in-question">
+                    Complete: A tag para criar links é &lt;<input type="text" class="fill-input" data-answer="a">&gt;
+                </div>
+                <button class="check-button" onclick="checkFill(this)">Verificar</button>
+                <div class="fill-feedback"></div>
+                <button class="fill-action-button" data-lesson="aula-1">→ Ir para Aula</button>
+            </div>
+        </div>
+
+        <!-- CSS -->
+        <div class="challenge-category">
+            <div class="category-header">
+                <span>🎨</span>
+                <span>CSS Básico</span>
+            </div>
+            
+            <div class="flashcards-grid">
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        O que significa CSS?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        Cascading Style Sheets - Folhas de Estilo em Cascata
+                    </div>
+                </div>
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual propriedade muda a cor do texto?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        color
+                    </div>
+                </div>
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual propriedade muda o tamanho da fonte?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        font-size
+                    </div>
+                </div>
+            </div>
+
+            <div class="fill-in-blank">
+                <div class="fill-in-question">
+                    Complete: Para alterar a cor de fundo, use <input type="text" class="fill-input" data-answer="background-color">
+                </div>
+                <button class="check-button" onclick="checkFill(this)">Verificar</button>
+                <div class="fill-feedback"></div>
+                <button class="fill-action-button" data-lesson="aula-2">→ Ir para Aula</button>
+            </div>
+        </div>
+
+        <!-- Git - PREPARADO -->
+        <div class="challenge-category category-prepared">
+            <div class="category-header">
+                <span>🔧</span>
+                <span>Git Básico</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nível Intermediário -->
+    <div class="challenges-container" id="intermediate">
+        <!-- HTML -->
+        <div class="challenge-category">
+            <div class="category-header">
+                <span>🌐</span>
+                <span>HTML Intermediário</span>
+            </div>
+            
+            <div class="flashcards-grid">
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual tag cria listas ordenadas?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        &lt;ol&gt;
+                    </div>
+                </div>
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual tag cria listas não ordenadas?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        &lt;ul&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="fill-in-blank">
+                <div class="fill-in-question">
+                    Complete: Itens de lista são criados com &lt;<input type="text" class="fill-input" data-answer="li">&gt;
+                </div>
+                <button class="check-button" onclick="checkFill(this)">Verificar</button>
+                <div class="fill-feedback"></div>
+                <button class="fill-action-button" data-lesson="aula-1">→ Ir para Aula</button>
+            </div>
+        </div>
+
+        <!-- CSS -->
+        <div class="challenge-category">
+            <div class="category-header">
+                <span>🎨</span>
+                <span>CSS Intermediário</span>
+            </div>
+            
+            <div class="flashcards-grid">
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual propriedade cria bordas?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        border
+                    </div>
+                </div>
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual propriedade arredonda cantos?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        border-radius
+                    </div>
+                </div>
+            </div>
+
+            <div class="fill-in-blank">
+                <div class="fill-in-question">
+                    Complete: O espaçamento interno é definido com <input type="text" class="fill-input" data-answer="padding">
+                </div>
+                <button class="check-button" onclick="checkFill(this)">Verificar</button>
+                <div class="fill-feedback"></div>
+                <button class="fill-action-button" data-lesson="aula-5">→ Ir para Aula</button>
+            </div>
+        </div>
+
+        <!-- Banco de Dados - PREPARADO -->
+        <div class="challenge-category category-prepared">
+            <div class="category-header">
+                <span>🗄️</span>
+                <span>Banco de Dados</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Nível Avançado -->
+    <div class="challenges-container" id="advanced">
+        <!-- HTML -->
+        <div class="challenge-category">
+            <div class="category-header">
+                <span>🌐</span>
+                <span>HTML Avançado</span>
+            </div>
+            
+            <div class="flashcards-grid">
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual tag define o cabeçalho semântico?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        &lt;header&gt;
+                    </div>
+                </div>
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual tag define o conteúdo principal?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        &lt;main&gt;
+                    </div>
+                </div>
+            </div>
+
+            <div class="fill-in-blank">
+                <div class="fill-in-question">
+                    Complete: O rodapé usa a tag &lt;<input type="text" class="fill-input" data-answer="footer">&gt;
+                </div>
+                <button class="check-button" onclick="checkFill(this)">Verificar</button>
+                <div class="fill-feedback"></div>
+                <button class="fill-action-button" data-lesson="aula-9">→ Ir para Aula</button>
+            </div>
+        </div>
+
+        <!-- CSS -->
+        <div class="challenge-category">
+            <div class="category-header">
+                <span>🎨</span>
+                <span>CSS Avançado</span>
+            </div>
+            
+            <div class="flashcards-grid">
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual display faz elementos ficarem lado a lado?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        flex
+                    </div>
+                </div>
+                <div class="flashcard" onclick="flipCard(this)">
+                    <div class="flashcard-front">
+                        Qual propriedade centraliza horizontalmente em flexbox?
+                        <div class="flashcard-hint">Clique para ver a resposta</div>
+                    </div>
+                    <div class="flashcard-back" style="display: none;">
+                        justify-content
+                    </div>
+                </div>
+            </div>
+
+            <div class="fill-in-blank">
+                <div class="fill-in-question">
+                    Complete: Para centralizar verticalmente, use <input type="text" class="fill-input" data-answer="align-items">
+                </div>
+                <button class="check-button" onclick="checkFill(this)">Verificar</button>
+                <div class="fill-feedback"></div>
+                <button class="fill-action-button" data-lesson="aula-8">→ Ir para Aula</button>
+            </div>
+        </div>
+
+        <!-- Lógica de Programação - PREPARADO -->
+        <div class="challenge-category category-prepared">
+            <div class="category-header">
+                <span>🧠</span>
+                <span>Lógica de Programação</span>
+            </div>
+        </div>
+    </div>
+
+        </main>
+    </div>
+
+    <!-- Widgets Flutuantes -->
+    <div class="floating-widgets" id="floatingWidgets">
+
+        <!-- Widget de Progresso -->
+        <div class="progress-widget">
+            <div class="progress-widget-header">
+                <span class="pie-icon">📊</span>
+                <h2>Seu Progresso</h2>
+            </div>
+            <div class="progress-divider"></div>
+            <p>Complete as aulas para acompanhar sua evolução no curso</p>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressFill"></div>
+                <span class="progress-bar-label" id="progressLabel">0/11 Aulas</span>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="completed-count">0</div>
+                    <div class="stat-label">Aulas Completadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="points-count">0</div>
+                    <div class="stat-label">Pontos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="streak-count">0</div>
+                    <div class="stat-label">Dias Consecutivos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget de Horário e Calendário -->
+        <div class="clock-widget">
+            <div class="clock-header">
+                <div class="clock-time" id="clock">00:00:00</div>
+                <div class="clock-label">Horário de Brasília</div>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-month" id="calendar-month-year">Junho 2024</div>
+                <div class="calendar-weekdays">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+                    <span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div class="calendar-days" id="calendar-days"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botão Seta Flutuante -->
+    <button class="floating-toggle-btn" onclick="toggleFloatingWidgets()" aria-label="Toggle Widgets">
+        <span id="toggleIcon">◀</span>
+    </button>
+
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function toggleFloatingWidgets() {
+            const widgets = document.getElementById('floatingWidgets');
+            const toggleBtn = document.querySelector('.floating-toggle-btn');
+            const toggleIcon = document.getElementById('toggleIcon');
+            widgets.classList.toggle('visible');
+            toggleBtn.classList.toggle('widgets-visible');
+            
+            if (widgets.classList.contains('visible')) {
+                toggleIcon.textContent = '▶';
+            } else {
+                toggleIcon.textContent = '◀';
+            }
+        }
+
+        function createNewNotebook() {
+            const title = prompt('Nome do caderno:');
+            if (title && title.trim()) {
+                const notebook = {
+                    id: Date.now(),
+                    title: title.trim(),
+                    content: '',
+                    date: new Date().toLocaleDateString('pt-BR')
+                };
+                const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                notebooks.unshift(notebook);
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                window.location.href = `cadernos.html?id=${notebook.id}`;
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const brasilia = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            const h = String(brasilia.getHours()).padStart(2, '0');
+            const m = String(brasilia.getMinutes()).padStart(2, '0');
+            const s = String(brasilia.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        }
+
+        function updateCalendar() {
+            const now = new Date();
+            const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                            'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+
+            document.getElementById('calendar-month-year').textContent =
+                `${months[month]} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const container = document.getElementById('calendar-days');
+            container.innerHTML = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                container.appendChild(empty);
+            }
+
+            const highlightDays = [22, 29];
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const el = document.createElement('div');
+                el.className = 'calendar-day';
+                el.textContent = day;
+
+                if (day === today) {
+                    el.classList.add('today');
+                } else if (highlightDays.includes(day)) {
+                    el.classList.add('highlight');
+                }
+
+                container.appendChild(el);
+            }
+        }
+
+        function updateProgress() {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const total = 11;
+            const count = completed.length > 0 ? completed.length : 2;
+            const pct = (count / total) * 100;
+
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = `${count}/${total} Aulas`;
+            document.getElementById('completed-count').textContent = count;
+            document.getElementById('points-count').textContent = count * 10;
+            document.getElementById('streak-count').textContent = 0;
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateClock();
+            updateCalendar();
+            updateProgress();
+            updateChallengePoints();
+            setupTabs();
+            setInterval(updateClock, 1000);
+            setInterval(updateCalendar, 60000);
+        });
+
+        function setupTabs() {
+            const tabs = document.querySelectorAll('.challenge-tab');
+            const containers = document.querySelectorAll('.challenges-container');
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    const level = this.dataset.level;
+                    
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+                    
+                    containers.forEach(c => c.classList.remove('active'));
+                    document.getElementById(level).classList.add('active');
+                });
+            });
+        }
+
+        function flipCard(card) {
+            const front = card.querySelector('.flashcard-front');
+            const back = card.querySelector('.flashcard-back');
+            
+            card.classList.toggle('flipped');
+            
+            if (card.classList.contains('flipped')) {
+                front.style.display = 'none';
+                back.style.display = 'block';
+            } else {
+                front.style.display = 'block';
+                back.style.display = 'none';
+            }
+        }
+
+        function checkFill(button) {
+            const container = button.closest('.fill-in-blank');
+            const input = container.querySelector('.fill-input');
+            const feedback = container.querySelector('.fill-feedback');
+            const actionButton = container.querySelector('.fill-action-button');
+            
+            const userAnswer = input.value.trim().toLowerCase();
+            const correctAnswer = input.dataset.answer.toLowerCase();
+            
+            if (userAnswer === correctAnswer) {
+                input.classList.add('fill-correct');
+                input.classList.remove('fill-incorrect');
+                feedback.textContent = '✅ Correto! +10 pontos';
+                feedback.className = 'fill-feedback correct';
+                actionButton.style.display = 'none';
+                
+                // Adicionar pontos
+                addPoints(10);
+            } else {
+                input.classList.add('fill-incorrect');
+                input.classList.remove('fill-correct');
+                feedback.textContent = '❌ Incorreto. Tente novamente!';
+                feedback.className = 'fill-feedback incorrect';
+                actionButton.style.display = 'block';
+            }
+        }
+
+        function addPoints(points) {
+            let totalPoints = parseInt(localStorage.getItem('challengePoints') || '0');
+            totalPoints += points;
+            localStorage.setItem('challengePoints', totalPoints);
+            updateChallengePoints();
+        }
+
+        function updateChallengePoints() {
+            const points = localStorage.getItem('challengePoints') || '0';
+            document.getElementById('total-challenge-points').textContent = points;
+        }
+    </script>
+</body>
+</html>

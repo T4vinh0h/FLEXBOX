@@ -1,0 +1,814 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 8 - Flexbox</title>
+    <link rel="stylesheet" href="css/dashboard-style.css">
+    <link rel="stylesheet" href="css/curso-style.css">
+    <link rel="stylesheet" href="css/demos-style.css">
+</head>
+<body class="dashboard-body">
+
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+
+    <div class="dashboard">
+
+        <!-- Coluna Lateral Esquerda -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="m">Prog</span><span class="u">rama</span><span class="r">ção</span><br/><span class="">FULL</span><span class="i">STACK
+
+                </span>
+            </div>
+
+            <div class="notebook-actions">
+                <button class="btn-novo-caderno" onclick="createNewNotebook()">
+                    <span class="plus">+</span> NOVO CADERNO
+                </button>
+                <button class="btn-dropdown" onclick="window.location.href='cadernos.html'" aria-label="Opções">▼</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../aulas.html" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                    PAGINA PRINCIPAL
+                </a>
+                <a href="cadernos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    Recentes
+                </a>
+                <a href="favoritos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                    Favoritos
+                </a>
+                <a href="modulos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Módulos
+                </a>
+                <a href="desafios.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Desafios
+                </a>
+            </nav>
+
+            
+</aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="main-area">
+
+            <!-- Banner Superior -->
+            <header class="banner">
+                <h1>📦 Aula 8 - Flexbox</h1>
+                <p>UC2 - Aula 2 | HTML & CSS Básico</p>
+            </header>
+
+            <!-- Catálogo de Aulas -->
+            <section class="lessons-area">
+                <h2>Catálogo de Aulas</h2>
+                <div class="lessons-grid">
+                    <a href="aula-1-listas.html" class="lesson-card" id="card-aula-1" data-lesson="aula-1">
+                        <span class="lesson-badge">Aula 1</span>
+                        <h3>Listas em HTML</h3>
+                        <p>Aprenda a organizar informações com listas ordenadas e não ordenadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">UL</span>
+                            <span class="lesson-tag">OL</span>
+                            <span class="lesson-tag">LI</span>
+                            <span class="lesson-tag">Aninhadas</span>
+                        </div>
+                    </a>
+                    <a href="aula-2-css-basico.html" class="lesson-card" id="card-aula-2" data-lesson="aula-2">
+                        <span class="lesson-badge">Aula 2</span>
+                        <h3>CSS Básico</h3>
+                        <p>Entenda os três tipos de CSS e como aplicá-los em suas páginas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">Interno</span>
+                            <span class="lesson-tag">Externo</span>
+                            <span class="lesson-tag">Seletores</span>
+                        </div>
+                    </a>
+                    <a href="aula-3-propriedades-css.html" class="lesson-card" id="card-aula-3" data-lesson="aula-3">
+                        <span class="lesson-badge">Aula 3</span>
+                        <h3>Propriedades CSS Essenciais</h3>
+                        <p>Domine as propriedades fundamentais para estilizar texto e elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Color</span>
+                            <span class="lesson-tag">Background</span>
+                            <span class="lesson-tag">Font</span>
+                            <span class="lesson-tag">Cores</span>
+                        </div>
+                    </a>
+                    <a href="aula-4-classes-ids.html" class="lesson-card" id="card-aula-4" data-lesson="aula-4">
+                        <span class="lesson-badge">Aula 4</span>
+                        <h3>Classes e IDs</h3>
+                        <p>Aprenda a usar seletores CSS para estilizar elementos específicos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Classes</span>
+                            <span class="lesson-tag">IDs</span>
+                            <span class="lesson-tag">Seletores</span>
+                            <span class="lesson-tag">Bordas</span>
+                        </div>
+                    </a>
+                    <a href="aula-5-box-model.html" class="lesson-card" id="card-aula-5" data-lesson="aula-5">
+                        <span class="lesson-badge">Aula 5</span>
+                        <h3>Box Model</h3>
+                        <p>Entenda como funciona o modelo de caixa: margin, padding e border.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Margin</span>
+                            <span class="lesson-tag">Padding</span>
+                            <span class="lesson-tag">Border</span>
+                            <span class="lesson-tag">Box-sizing</span>
+                        </div>
+                    </a>
+                    <a href="aula-6-display-div-span.html" class="lesson-card" id="card-aula-6" data-lesson="aula-6">
+                        <span class="lesson-badge">Aula 6</span>
+                        <h3>Display, DIV e SPAN</h3>
+                        <p>Diferença entre elementos block e inline, e quando usar DIV ou SPAN.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Block</span>
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">DIV</span>
+                            <span class="lesson-tag">SPAN</span>
+                        </div>
+                    </a>
+                    <a href="aula-7-position-zindex.html" class="lesson-card" id="card-aula-7" data-lesson="aula-7">
+                        <span class="lesson-badge">Aula 7</span>
+                        <h3>Posição e Camadas</h3>
+                        <p>Aprenda position, z-index e como controlar a sobreposição de elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Relative</span>
+                            <span class="lesson-tag">Absolute</span>
+                            <span class="lesson-tag">Fixed</span>
+                            <span class="lesson-tag">Z-index</span>
+                        </div>
+                    </a>
+                    <a href="aula-8-flexbox.html" class="lesson-card" id="card-aula-8" data-lesson="aula-8">
+                        <span class="lesson-badge">Aula 8</span>
+                        <h3>Flexbox</h3>
+                        <p>Domine o layout flexível com flex container, items, justify e align.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Flex</span>
+                            <span class="lesson-tag">Justify</span>
+                            <span class="lesson-tag">Align</span>
+                            <span class="lesson-tag">Direction</span>
+                        </div>
+                    </a>
+                    <a href="aula-9-semantic-html.html" class="lesson-card" id="card-aula-9" data-lesson="aula-9">
+                        <span class="lesson-badge">Aula 9</span>
+                        <h3>HTML Semântico</h3>
+                        <p>Use tags semânticas para criar páginas mais acessíveis e bem estruturadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Header</span>
+                            <span class="lesson-tag">Nav</span>
+                            <span class="lesson-tag">Main</span>
+                            <span class="lesson-tag">Footer</span>
+                        </div>
+                    </a>
+                    <a href="aula-10-formularios.html" class="lesson-card" id="card-aula-10" data-lesson="aula-10">
+                        <span class="lesson-badge">Aula 10</span>
+                        <h3>Formulários</h3>
+                        <p>Crie formulários interativos com inputs, labels e validação.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Form</span>
+                            <span class="lesson-tag">Input</span>
+                            <span class="lesson-tag">Label</span>
+                            <span class="lesson-tag">Validação</span>
+                        </div>
+                    </a>
+                    <a href="aula-11-git-github.html" class="lesson-card" id="card-aula-11" data-lesson="aula-11">
+                        <span class="lesson-badge">Aula 11</span>
+                        <h3>Git & GitHub</h3>
+                        <p>Controle de versão e colaboração com Git e GitHub.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Git</span>
+                            <span class="lesson-tag">GitHub</span>
+                            <span class="lesson-tag">Commit</span>
+                            <span class="lesson-tag">Push</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Conteúdo da Aula -->
+            <div class="lesson-content-container">
+                <div class="course-header">
+                    <h1>📦 Aula 8 - Flexbox</h1>
+                    <div class="meta">UC2 - Aula 2 | HTML & CSS Básico</div>
+                </div>
+
+    <div class="content-section">
+        <h2>🎯 Objetivos da Aula</h2>
+        <ul>
+            <li>Entender o que é Flexbox</li>
+            <li>Aprender display: flex</li>
+            <li>Conhecer flex-direction</li>
+            <li>Aprender justify-content</li>
+            <li>Aprender align-items</li>
+            <li>Entender flex-wrap e gap</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>📖 O que é Flexbox?</h2>
+        <p>Flexbox (Flexible Box Layout) é um sistema de layout que facilita organizar, alinhar e distribuir elementos em uma página.</p>
+
+        <h3>Por que usar?</h3>
+        <ul>
+            <li>✅ Facilita alinhar elementos horizontal e verticalmente</li>
+            <li>✅ Distribui espaço automaticamente</li>
+            <li>✅ Elementos responsivos (se adaptam ao tamanho da tela)</li>
+            <li>✅ Resolve problemas que antes exigiam truques complicados</li>
+        </ul>
+
+        <div class="tip-block">
+            <strong>💡 Dica:</strong> Temos um exemplo prático completo de Flexbox no arquivo <code>index.html</code> deste projeto!
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>🔧 Como funciona?</h2>
+        <p>Flexbox trabalha com dois conceitos:</p>
+        <ul>
+            <li><strong>Container (Pai)</strong> - elemento com <code>display: flex</code></li>
+            <li><strong>Items (Filhos)</strong> - elementos dentro do container</li>
+        </ul>
+
+        <div class="code-block">
+            <code>
+&lt;div class="container"&gt;  &lt;!-- Container/Pai --&gt;<br>
+&nbsp;&nbsp;&lt;div&gt;Item 1&lt;/div&gt; &lt;!-- Item/Filho --&gt;<br>
+&nbsp;&nbsp;&lt;div&gt;Item 2&lt;/div&gt; &lt;!-- Item/Filho --&gt;<br>
+&nbsp;&nbsp;&lt;div&gt;Item 3&lt;/div&gt; &lt;!-- Item/Filho --&gt;<br>
+&lt;/div&gt;
+            </code>
+        </div>
+
+        <div class="code-block">
+            <code>
+.container {<br>
+&nbsp;&nbsp;display: flex; /* Ativa o flexbox */<br>
+}
+            </code>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>✨ Display: flex</h2>
+        <p>Transforma um elemento em um flex container.</p>
+
+        <div class="code-block">
+            <code>
+.container {<br>
+&nbsp;&nbsp;display: flex;<br>
+}
+            </code>
+        </div>
+
+        <h3>O que acontece:</h3>
+        <ul>
+            <li>✅ Todos os filhos diretos viram flex items</li>
+            <li>✅ Por padrão, ficam lado a lado (em linha)</li>
+            <li>✅ Ocupam apenas o espaço necessário</li>
+        </ul>
+
+        <h3>Resultado Visual:</h3>
+        <div class="demo-section">
+            <p class="demo-label">display: flex (padrão)</p>
+            <div class="flex-row">
+                <div class="quadrado1">Item 1</div>
+                <div class="quadrado2">Item 2</div>
+                <div class="quadrado3">Item 3</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>🔄 Flex-direction - Direção dos itens</h2>
+        <p>Define se os itens ficam em linha ou coluna.</p>
+
+        <div class="code-block">
+            <code>
+.container {<br>
+&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;flex-direction: row; /* Padrão */<br>
+}
+            </code>
+        </div>
+
+        <h3>Valores:</h3>
+        <ul>
+            <li><code>row</code> (padrão) - Linha (lado a lado, da esquerda para direita)</li>
+            <li><code>row-reverse</code> - Linha invertida (direita para esquerda)</li>
+            <li><code>column</code> - Coluna (um embaixo do outro)</li>
+            <li><code>column-reverse</code> - Coluna invertida (de baixo para cima)</li>
+        </ul>
+
+        <h3>Demonstração Visual:</h3>
+        <div class="demo-section">
+            <p class="demo-label">flex-direction: row (padrão)</p>
+            <div class="flex-row">
+                <div class="quadrado1">Q1</div>
+                <div class="quadrado2">Q2</div>
+                <div class="quadrado3">Q3</div>
+            </div>
+
+            <p class="demo-label">flex-direction: column</p>
+            <div class="flex-column">
+                <div class="quadrado1">Q1</div>
+                <div class="quadrado2">Q2</div>
+                <div class="quadrado3">Q3</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>↔️ Justify-content - Alinhamento no eixo principal</h2>
+        <p>Distribui os itens ao longo do eixo principal (horizontal se row, vertical se column).</p>
+
+        <div class="code-block">
+            <code>
+.container {<br>
+&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;justify-content: center; /* Padrão */<br>
+}
+            </code>
+        </div>
+
+        <h3>Valores principais:</h3>
+        <ul>
+            <li><code>flex-start</code> (padrão) - Início</li>
+            <li><code>flex-end</code> - Final</li>
+            <li><code>center</code> - Centro</li>
+            <li><code>space-between</code> - Espaço entre (extremos grudados)</li>
+            <li><code>space-around</code> - Espaço ao redor</li>
+            <li><code>space-evenly</code> - Espaço uniforme</li>
+        </ul>
+
+        <h3>Demonstração Visual (flex-direction: row):</h3>
+        <div class="demo-section">
+            <p class="demo-label">justify-content: flex-start (padrão)</p>
+            <div class="flex-row">
+                <div class="quadrado1">Q1</div>
+                <div class="quadrado2">Q2</div>
+                <div class="quadrado3">Q3</div>
+            </div>
+
+            <p class="demo-label">justify-content: center</p>
+            <div class="flex-row-center">
+                <div class="quadrado1">Q1</div>
+                <div class="quadrado2">Q2</div>
+                <div class="quadrado3">Q3</div>
+            </div>
+
+            <p class="demo-label">justify-content: space-between (gruda nas pontas)</p>
+            <div class="flex-row-space-between">
+                <div class="quadrado1">Q1</div>
+                <div class="quadrado2">Q2</div>
+                <div class="quadrado3">Q3</div>
+            </div>
+
+            <p class="demo-label">justify-content: space-around</p>
+            <div class="flex-row-space-around">
+                <div class="quadrado1">Q1</div>
+                <div class="quadrado2">Q2</div>
+                <div class="quadrado3">Q3</div>
+            </div>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>↕️ Align-items - Alinhamento no eixo transversal</h2>
+        <p>Alinha os itens no eixo transversal (vertical se row, horizontal se column).</p>
+
+        <div class="code-block">
+            <code>
+.container {<br>
+&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;align-items: center;<br>
+}
+            </code>
+        </div>
+
+        <h3>Valores principais:</h3>
+        <ul>
+            <li><code>stretch</code> (padrão) - Estica para preencher</li>
+            <li><code>flex-start</code> - Início</li>
+            <li><code>flex-end</code> - Final</li>
+            <li><code>center</code> - Centro</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>🔃 Flex-wrap - Quebra de linha</h2>
+        <p>Define se os itens devem quebrar linha quando não couberem.</p>
+
+        <div class="code-block">
+            <code>
+.container {<br>
+&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;flex-wrap: wrap; /* Quebra linha */<br>
+}
+            </code>
+        </div>
+
+        <h3>Valores:</h3>
+        <ul>
+            <li><code>nowrap</code> (padrão) - Não quebra</li>
+            <li><code>wrap</code> - Quebra linha</li>
+            <li><code>wrap-reverse</code> - Quebra linha invertida</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>📏 Gap - Espaçamento entre itens</h2>
+        <p>Define o espaço entre os itens (substitui margin).</p>
+
+        <div class="code-block">
+            <code>
+.container {<br>
+&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;gap: 20px;<br>
+}
+            </code>
+        </div>
+
+        <div class="tip-block">
+            <strong>💡 Dica:</strong> gap é melhor que margin para espaçamento em flexbox!
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>🎯 Casos Práticos Comuns</h2>
+
+        <h3>1. Centralizar elemento (vertical e horizontal)</h3>
+        <div class="code-block">
+            <code>
+.container {<br>
+&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;justify-content: center; /* Horizontal */<br>
+&nbsp;&nbsp;align-items: center; /* Vertical */<br>
+&nbsp;&nbsp;height: 300px;<br>
+}
+            </code>
+        </div>
+
+        <h3>2. Navbar</h3>
+        <div class="code-block">
+            <code>
+.navbar {<br>
+&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;justify-content: space-between;<br>
+&nbsp;&nbsp;align-items: center;<br>
+}
+            </code>
+        </div>
+
+        <h3>3. Cards lado a lado</h3>
+        <div class="code-block">
+            <code>
+.cards-container {<br>
+&nbsp;&nbsp;display: flex;<br>
+&nbsp;&nbsp;gap: 20px;<br>
+&nbsp;&nbsp;flex-wrap: wrap;<br>
+}<br>
+.card {<br>
+&nbsp;&nbsp;flex: 1; /* Todos crescem igualmente */<br>
+}
+            </code>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>📚 Exemplo Prático Completo</h2>
+
+        <div class="note-block">
+            <strong>📁 Arquivo:</strong> <code>index.html</code> neste projeto contém exemplos visuais de todas as combinações de flexbox!
+        </div>
+
+        <p>O arquivo <code>index.html</code> demonstra:</p>
+        <ul>
+            <li>flex-row com diferentes justify-content</li>
+            <li>flex-row-reverse com diferentes justify-content</li>
+            <li>flex-column com diferentes justify-content</li>
+            <li>flex-column-reverse com diferentes justify-content</li>
+        </ul>
+
+        <div class="tip-block">
+            <strong>💡 Recomendação:</strong> Abra o <code>index.html</code> no navegador para ver todos os exemplos visuais de flexbox!
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>✅ Exercício Prático</h2>
+        <div class="tip-block">
+            <p><strong>🎯 Tente criar:</strong></p>
+            <ol>
+                <li>Crie um container com 3 itens</li>
+                <li>Use <code>display: flex</code> para colocá-los lado a lado</li>
+                <li>Centralize os itens com <code>justify-content: center</code></li>
+                <li>Adicione <code>gap: 20px</code> entre os itens</li>
+                <li>Experimente <code>flex-direction: column</code></li>
+                <li>Teste diferentes combinações de justify-content e align-items</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>🎓 Resumo da Aula</h2>
+        <ul>
+            <li>✅ <strong>Flexbox</strong> = sistema de layout flexível</li>
+            <li>✅ <strong>display: flex</strong> = ativa o flexbox</li>
+            <li>✅ <strong>flex-direction</strong> = direção (row, column)</li>
+            <li>✅ <strong>justify-content</strong> = alinha no eixo principal</li>
+            <li>✅ <strong>align-items</strong> = alinha no eixo transversal</li>
+            <li>✅ <strong>flex-wrap</strong> = quebra de linha</li>
+            <li>✅ <strong>gap</strong> = espaço entre itens</li>
+            <li>✅ <strong>justify-content: center + align-items: center</strong> = centraliza elemento</li>
+            <li>✅ <strong>justify-content: space-between</strong> = distribui espaço</li>
+        </ul>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="aula-7-position-zindex.html">← Aula Anterior</a>
+        <a href="aula-9-semantic-html.html">Próxima Aula: HTML Semântico →</a>
+    </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Widgets Flutuantes -->
+    <div class="floating-widgets" id="floatingWidgets">
+
+        <!-- Widget de Progresso -->
+        <div class="progress-widget">
+            <div class="progress-widget-header">
+                <span class="pie-icon">📊</span>
+                <h2>Seu Progresso</h2>
+            </div>
+            <div class="progress-divider"></div>
+            <p>Complete as aulas para acompanhar sua evolução no curso</p>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressFill"></div>
+                <span class="progress-bar-label" id="progressLabel">0/11 Aulas</span>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="completed-count">0</div>
+                    <div class="stat-label">Aulas Completadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="points-count">0</div>
+                    <div class="stat-label">Pontos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="streak-count">0</div>
+                    <div class="stat-label">Dias Consecutivos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget de Horário e Calendário -->
+        <div class="clock-widget">
+            <div class="clock-header">
+                <div class="clock-time" id="clock">00:00:00</div>
+                <div class="clock-label">Horário de Brasília</div>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-month" id="calendar-month-year">Junho 2024</div>
+                <div class="calendar-weekdays">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+                    <span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div class="calendar-days" id="calendar-days"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botão Seta Flutuante -->
+    <button class="floating-toggle-btn" onclick="toggleFloatingWidgets()" aria-label="Toggle Widgets">
+        <span id="toggleIcon">◀</span>
+    </button>
+
+    <style>
+        .lesson-content-container {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .completion-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .complete-lesson-button {
+            padding: 15px 30px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .complete-lesson-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .complete-lesson-button:disabled {
+            background: var(--bg-tertiary);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .completion-message {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+    </style>
+
+    <footer>
+        <p>© 2025 Curso HTML & CSS - UC2 Aula 2</p>
+    </footer>
+
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function toggleFloatingWidgets() {
+            const widgets = document.getElementById('floatingWidgets');
+            const toggleBtn = document.querySelector('.floating-toggle-btn');
+            const toggleIcon = document.getElementById('toggleIcon');
+            widgets.classList.toggle('visible');
+            toggleBtn.classList.toggle('widgets-visible');
+            
+            if (widgets.classList.contains('visible')) {
+                toggleIcon.textContent = '▶';
+            } else {
+                toggleIcon.textContent = '◀';
+            }
+        }
+
+        function createNewNotebook() {
+            const title = prompt('Nome do caderno:');
+            if (title && title.trim()) {
+                const notebook = {
+                    id: Date.now(),
+                    title: title.trim(),
+                    content: '',
+                    date: new Date().toLocaleDateString('pt-BR')
+                };
+                const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                notebooks.unshift(notebook);
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                window.location.href = `cadernos.html?id=${notebook.id}`;
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const brasilia = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            const h = String(brasilia.getHours()).padStart(2, '0');
+            const m = String(brasilia.getMinutes()).padStart(2, '0');
+            const s = String(brasilia.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        }
+
+        function updateCalendar() {
+            const now = new Date();
+            const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            const month = now.getMonth();
+            const year = now.getFullYear();
+            const today = now.getDate();
+            
+            document.getElementById('calendar-month-year').textContent = `${months[month]} ${year}`;
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = '';
+            
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarDays.appendChild(emptyDay);
+            }
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day';
+                dayEl.textContent = day;
+                if (day === today) {
+                    dayEl.classList.add('today');
+                }
+                calendarDays.appendChild(dayEl);
+            }
+        }
+
+        function updateProgress() {
+            const completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const totalLessons = 11;
+            const completed = completedLessons.length;
+            const percentage = (completed / totalLessons) * 100;
+            
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+            document.getElementById('progressLabel').textContent = `${completed}/${totalLessons} Aulas`;
+            document.getElementById('completed-count').textContent = completed;
+            document.getElementById('points-count').textContent = localStorage.getItem('totalPoints') || '0';
+            document.getElementById('streak-count').textContent = localStorage.getItem('streak') || '0';
+        }
+
+        function completeLesson(lessonId) {
+            let completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            if (!completedLessons.includes(lessonId)) {
+                completedLessons.push(lessonId);
+                localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+                
+                let totalPoints = parseInt(localStorage.getItem('totalPoints') || '0');
+                totalPoints += 10;
+                localStorage.setItem('totalPoints', totalPoints);
+                
+                let studyTime = parseInt(localStorage.getItem('studyTime') || '0');
+                studyTime += 10;
+                localStorage.setItem('studyTime', studyTime);
+                
+                const button = document.getElementById('completeButton');
+                button.disabled = true;
+                button.textContent = '✅ Aula Concluída';
+                
+                const message = document.getElementById('completionMessage');
+                message.style.display = 'block';
+                
+                let achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
+                if (!achievements.includes('first-lesson')) {
+                    achievements.push('first-lesson');
+                    localStorage.setItem('achievements', JSON.stringify(achievements));
+                }
+                
+                if (completedLessons.length === 6 && !achievements.includes('half-way')) {
+                    achievements.push('half-way');
+                    localStorage.setItem('achievements', JSON.stringify(achievements));
+                }
+                
+                if (completedLessons.length === 11 && !achievements.includes('complete-course')) {
+                    achievements.push('complete-course');
+                    localStorage.setItem('achievements', JSON.stringify(achievements));
+                }
+                
+                updateProgress();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            const completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const button = document.getElementById('completeButton');
+            
+            if (completedLessons.includes('aula-8')) {
+                button.disabled = true;
+                button.textContent = '✅ Aula Concluída';
+                
+                const message = document.getElementById('completionMessage');
+                message.style.display = 'block';
+                message.textContent = '🎉 Aula já concluída!';
+            }
+            
+            updateClock();
+            setInterval(updateClock, 1000);
+            updateCalendar();
+            updateProgress();
+            
+            // Marcar aula atual como ativa no catálogo
+            const currentLessonCard = document.getElementById('card-aula-8');
+            if (currentLessonCard) {
+                currentLessonCard.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,769 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 11 - Git e GitHub</title>
+    <link rel="stylesheet" href="css/dashboard-style.css">
+    <link rel="stylesheet" href="css/curso-style.css">
+    <link rel="stylesheet" href="css/demos-style.css">
+</head>
+<body class="dashboard-body">
+
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+
+    <div class="dashboard">
+
+        <!-- Coluna Lateral Esquerda -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="m">Prog</span><span class="u">rama</span><span class="r">ção</span><br/><span class="">FULL</span><span class="i">STACK
+
+                </span>
+            </div>
+
+            <div class="notebook-actions">
+                <button class="btn-novo-caderno" onclick="createNewNotebook()">
+                    <span class="plus">+</span> NOVO CADERNO
+                </button>
+                <button class="btn-dropdown" onclick="window.location.href='cadernos.html'" aria-label="Opções">▼</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../aulas.html" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                    PAGINA PRINCIPAL
+                </a>
+                <a href="cadernos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    Recentes
+                </a>
+                <a href="favoritos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                    Favoritos
+                </a>
+                <a href="modulos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Módulos
+                </a>
+                <a href="desafios.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Desafios
+                </a>
+            </nav>
+
+            
+</aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="main-area">
+
+            <!-- Banner Superior -->
+            <header class="banner">
+                <h1>🔧 Aula 11 - Git e GitHub</h1>
+                <p>UC2 - Aula 2 | HTML & CSS Básico</p>
+            </header>
+
+            <!-- Catálogo de Aulas -->
+            <section class="lessons-area">
+                <h2>Catálogo de Aulas</h2>
+                <div class="lessons-grid">
+                    <a href="aula-1-listas.html" class="lesson-card" id="card-aula-1" data-lesson="aula-1">
+                        <span class="lesson-badge">Aula 1</span>
+                        <h3>Listas em HTML</h3>
+                        <p>Aprenda a organizar informações com listas ordenadas e não ordenadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">UL</span>
+                            <span class="lesson-tag">OL</span>
+                            <span class="lesson-tag">LI</span>
+                            <span class="lesson-tag">Aninhadas</span>
+                        </div>
+                    </a>
+                    <a href="aula-2-css-basico.html" class="lesson-card" id="card-aula-2" data-lesson="aula-2">
+                        <span class="lesson-badge">Aula 2</span>
+                        <h3>CSS Básico</h3>
+                        <p>Entenda os três tipos de CSS e como aplicá-los em suas páginas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">Interno</span>
+                            <span class="lesson-tag">Externo</span>
+                            <span class="lesson-tag">Seletores</span>
+                        </div>
+                    </a>
+                    <a href="aula-3-propriedades-css.html" class="lesson-card" id="card-aula-3" data-lesson="aula-3">
+                        <span class="lesson-badge">Aula 3</span>
+                        <h3>Propriedades CSS Essenciais</h3>
+                        <p>Domine as propriedades fundamentais para estilizar texto e elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Color</span>
+                            <span class="lesson-tag">Background</span>
+                            <span class="lesson-tag">Font</span>
+                            <span class="lesson-tag">Cores</span>
+                        </div>
+                    </a>
+                    <a href="aula-4-classes-ids.html" class="lesson-card" id="card-aula-4" data-lesson="aula-4">
+                        <span class="lesson-badge">Aula 4</span>
+                        <h3>Classes e IDs</h3>
+                        <p>Aprenda a usar seletores CSS para estilizar elementos específicos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Classes</span>
+                            <span class="lesson-tag">IDs</span>
+                            <span class="lesson-tag">Seletores</span>
+                            <span class="lesson-tag">Bordas</span>
+                        </div>
+                    </a>
+                    <a href="aula-5-box-model.html" class="lesson-card" id="card-aula-5" data-lesson="aula-5">
+                        <span class="lesson-badge">Aula 5</span>
+                        <h3>Box Model</h3>
+                        <p>Entenda como funciona o modelo de caixa: margin, padding e border.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Margin</span>
+                            <span class="lesson-tag">Padding</span>
+                            <span class="lesson-tag">Border</span>
+                            <span class="lesson-tag">Box-sizing</span>
+                        </div>
+                    </a>
+                    <a href="aula-6-display-div-span.html" class="lesson-card" id="card-aula-6" data-lesson="aula-6">
+                        <span class="lesson-badge">Aula 6</span>
+                        <h3>Display, DIV e SPAN</h3>
+                        <p>Diferença entre elementos block e inline, e quando usar DIV ou SPAN.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Block</span>
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">DIV</span>
+                            <span class="lesson-tag">SPAN</span>
+                        </div>
+                    </a>
+                    <a href="aula-7-position-zindex.html" class="lesson-card" id="card-aula-7" data-lesson="aula-7">
+                        <span class="lesson-badge">Aula 7</span>
+                        <h3>Posição e Camadas</h3>
+                        <p>Aprenda position, z-index e como controlar a sobreposição de elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Relative</span>
+                            <span class="lesson-tag">Absolute</span>
+                            <span class="lesson-tag">Fixed</span>
+                            <span class="lesson-tag">Z-index</span>
+                        </div>
+                    </a>
+                    <a href="aula-8-flexbox.html" class="lesson-card" id="card-aula-8" data-lesson="aula-8">
+                        <span class="lesson-badge">Aula 8</span>
+                        <h3>Flexbox</h3>
+                        <p>Domine o layout flexível com flex container, items, justify e align.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Flex</span>
+                            <span class="lesson-tag">Justify</span>
+                            <span class="lesson-tag">Align</span>
+                            <span class="lesson-tag">Direction</span>
+                        </div>
+                    </a>
+                    <a href="aula-9-semantic-html.html" class="lesson-card" id="card-aula-9" data-lesson="aula-9">
+                        <span class="lesson-badge">Aula 9</span>
+                        <h3>HTML Semântico</h3>
+                        <p>Use tags semânticas para criar páginas mais acessíveis e bem estruturadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Header</span>
+                            <span class="lesson-tag">Nav</span>
+                            <span class="lesson-tag">Main</span>
+                            <span class="lesson-tag">Footer</span>
+                        </div>
+                    </a>
+                    <a href="aula-10-formularios.html" class="lesson-card" id="card-aula-10" data-lesson="aula-10">
+                        <span class="lesson-badge">Aula 10</span>
+                        <h3>Formulários</h3>
+                        <p>Crie formulários interativos com inputs, labels e validação.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Form</span>
+                            <span class="lesson-tag">Input</span>
+                            <span class="lesson-tag">Label</span>
+                            <span class="lesson-tag">Validação</span>
+                        </div>
+                    </a>
+                    <a href="aula-11-git-github.html" class="lesson-card" id="card-aula-11" data-lesson="aula-11">
+                        <span class="lesson-badge">Aula 11</span>
+                        <h3>Git & GitHub</h3>
+                        <p>Controle de versão e colaboração com Git e GitHub.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Git</span>
+                            <span class="lesson-tag">GitHub</span>
+                            <span class="lesson-tag">Commit</span>
+                            <span class="lesson-tag">Push</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Conteúdo da Aula -->
+            <div class="lesson-content-container">
+                <div class="course-header">
+                    <h1>🔧 Aula 11 - Git e GitHub</h1>
+                    <div class="meta">UC2 - Aula 2 | HTML & CSS Básico</div>
+                </div>
+
+    <div class="content-section">
+        <h2>📖 O que são Git e GitHub?</h2>
+        
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Definição</th>
+                    <th>Função</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Git</strong></td>
+                    <td>Sistema de controle de versão</td>
+                    <td>Salva histórico de alterações</td>
+                </tr>
+                <tr>
+                    <td><strong>GitHub</strong></td>
+                    <td>Plataforma online</td>
+                    <td>Armazena e compartilha repositórios</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Por que usar?</h3>
+        <ul>
+            <li>✅ Salva histórico completo do projeto</li>
+            <li>✅ Volta para versões antigas</li>
+            <li>✅ Trabalha em equipe sem conflitos</li>
+            <li>✅ Portfólio de projetos públicos</li>
+            <li>✅ Backup na nuvem</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>⚙️ Configuração Inicial</h2>
+        
+        <h3>1. Criar conta no GitHub:</h3>
+        <p>Acesse: <a href="https://github.com" target="_blank">https://github.com</a></p>
+
+        <h3>2. Instalar Git:</h3>
+        <div class="code-block">
+            <code>
+# Windows<br>
+https://git-scm.com/download/win<br><br>
+# Linux (Ubuntu/Debian)<br>
+sudo apt install git<br><br>
+# Verificar instalação<br>
+git --version
+            </code>
+        </div>
+
+        <h3>3. Configurar Git (OBRIGATÓRIO):</h3>
+        <div class="warning-block">
+            <strong>⚠️ Importante:</strong> Use o MESMO email da sua conta GitHub!
+        </div>
+        <div class="code-block">
+            <code>
+git config --global user.name "Seu Nome"<br>
+git config --global user.email "seu@email.com"<br>
+git config --list  /* Ver configuração */
+            </code>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>📚 Comandos Essenciais</h2>
+        
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Comando</th>
+                    <th>Descrição</th>
+                    <th>Quando usar</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>git init</code></td>
+                    <td>Inicia repositório</td>
+                    <td>Ao começar projeto novo</td>
+                </tr>
+                <tr>
+                    <td><code>git status</code></td>
+                    <td>Ver estado</td>
+                    <td>Para ver mudanças</td>
+                </tr>
+                <tr>
+                    <td><code>git add .</code></td>
+                    <td>Adiciona tudo</td>
+                    <td>Antes de commit</td>
+                </tr>
+                <tr>
+                    <td><code>git commit -m "msg"</code></td>
+                    <td>Salva versão</td>
+                    <td>Para salvar mudanças</td>
+                </tr>
+                <tr>
+                    <td><code>git push</code></td>
+                    <td>Envia para GitHub</td>
+                    <td>Para salvar na nuvem</td>
+                </tr>
+                <tr>
+                    <td><code>git pull</code></td>
+                    <td>Baixa atualizações</td>
+                    <td>Antes de trabalhar</td>
+                </tr>
+                <tr>
+                    <td><code>git clone URL</code></td>
+                    <td>Copia repositório</td>
+                    <td>Baixar projeto</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2>🔄 Fluxo de Trabalho Diário</h2>
+        
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Passo</th>
+                    <th>Comando</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>1</td>
+                    <td>git pull</td>
+                    <td>Baixa atualizações</td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>Trabalha</td>
+                    <td>Faz alterações</td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>git status</td>
+                    <td>Ver o que mudou</td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>git add .</td>
+                    <td>Prepara tudo</td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>git commit -m</td>
+                    <td>Salva localmente</td>
+                </tr>
+                <tr>
+                    <td>6</td>
+                    <td>git push</td>
+                    <td>Envia para GitHub</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2>🌳 Branches (Ramificações)</h2>
+        
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Comando</th>
+                    <th>Ação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><code>git branch</code></td>
+                    <td>Lista branches</td>
+                </tr>
+                <tr>
+                    <td><code>git branch nome</code></td>
+                    <td>Cria branch</td>
+                </tr>
+                <tr>
+                    <td><code>git checkout nome</code></td>
+                    <td>Troca de branch</td>
+                </tr>
+                <tr>
+                    <td><code>git merge nome</code></td>
+                    <td>Junta branches</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2>🎨 Ferramentas Visuais</h2>
+        
+        <h3>GitHub Desktop:</h3>
+        <ul>
+            <li>Interface gráfica (sem comandos)</li>
+            <li>Download: <a href="https://desktop.github.com/" target="_blank">https://desktop.github.com/</a></li>
+            <li>Gerencia branches visualmente</li>
+        </ul>
+
+        <h3>Extensão Git do VSCode:</h3>
+        <ul>
+            <li>Ícone "Source Control" na barra lateral</li>
+            <li>Veja alterações em tempo real</li>
+            <li>Clique "+" para git add</li>
+            <li>Escreva mensagem e clique em "✓" para commit</li>
+        </ul>
+    </div>
+
+    <div class="content-section">
+        <h2>✅ Exercício Prático</h2>
+        <div class="tip-block">
+            <p><strong>🎯 Desafio:</strong></p>
+            <ol>
+                <li>Crie conta no GitHub</li>
+                <li>Instale Git e configure nome/email</li>
+                <li>Crie repositório no GitHub</li>
+                <li>Clone para computador</li>
+                <li>Crie arquivo index.html</li>
+                <li>git add, commit, push</li>
+                <li>Veja no GitHub!</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>🎓 Resumo da Aula</h2>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Conceito</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Git</strong></td>
+                    <td>Sistema de controle de versão</td>
+                </tr>
+                <tr>
+                    <td><strong>GitHub</strong></td>
+                    <td>Plataforma online para repositórios</td>
+                </tr>
+                <tr>
+                    <td><strong>git config</strong></td>
+                    <td>Configura nome e email</td>
+                </tr>
+                <tr>
+                    <td><strong>git init</strong></td>
+                    <td>Inicia repositório</td>
+                </tr>
+                <tr>
+                    <td><strong>git add</strong></td>
+                    <td>Adiciona mudanças</td>
+                </tr>
+                <tr>
+                    <td><strong>git commit</strong></td>
+                    <td>Salva versão</td>
+                </tr>
+                <tr>
+                    <td><strong>git push</strong></td>
+                    <td>Envia para GitHub</td>
+                </tr>
+                <tr>
+                    <td><strong>git pull</strong></td>
+                    <td>Baixa atualizações</td>
+                </tr>
+                <tr>
+                    <td><strong>git clone</strong></td>
+                    <td>Copia repositório</td>
+                </tr>
+                <tr>
+                    <td><strong>git branch</strong></td>
+                    <td>Gerencia ramificações</td>
+                </tr>
+                <tr>
+                    <td><strong>GitHub Desktop/VSCode</strong></td>
+                    <td>Ferramentas visuais para facilitar</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="aula-10-formularios.html">← Aula Anterior</a>
+        <a href="../aulas.html">🎉 Voltar para o Curso (Completo!) →</a>
+    </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Widgets Flutuantes -->
+    <div class="floating-widgets" id="floatingWidgets">
+
+        <!-- Widget de Progresso -->
+        <div class="progress-widget">
+            <div class="progress-widget-header">
+                <span class="pie-icon">📊</span>
+                <h2>Seu Progresso</h2>
+            </div>
+            <div class="progress-divider"></div>
+            <p>Complete as aulas para acompanhar sua evolução no curso</p>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressFill"></div>
+                <span class="progress-bar-label" id="progressLabel">0/11 Aulas</span>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="completed-count">0</div>
+                    <div class="stat-label">Aulas Completadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="points-count">0</div>
+                    <div class="stat-label">Pontos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="streak-count">0</div>
+                    <div class="stat-label">Dias Consecutivos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget de Horário e Calendário -->
+        <div class="clock-widget">
+            <div class="clock-header">
+                <div class="clock-time" id="clock">00:00:00</div>
+                <div class="clock-label">Horário de Brasília</div>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-month" id="calendar-month-year">Junho 2024</div>
+                <div class="calendar-weekdays">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+                    <span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div class="calendar-days" id="calendar-days"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botão Seta Flutuante -->
+    <button class="floating-toggle-btn" onclick="toggleFloatingWidgets()" aria-label="Toggle Widgets">
+        <span id="toggleIcon">◀</span>
+    </button>
+
+    <style>
+        .lesson-content-container {
+            padding: 20px;
+            background: #ffffff;
+            border-radius: 8px;
+            margin-top: 20px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .completion-section {
+            text-align: center;
+            margin: 30px 0;
+            padding: 20px;
+            background: var(--bg-secondary);
+            border-radius: 10px;
+            border: 1px solid var(--border-color);
+        }
+
+        .complete-lesson-button {
+            padding: 15px 30px;
+            background: var(--accent-gradient);
+            color: white;
+            border: none;
+            border-radius: 10px;
+            font-size: 1.1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
+        }
+
+        .complete-lesson-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+        }
+
+        .complete-lesson-button:disabled {
+            background: var(--bg-tertiary);
+            cursor: not-allowed;
+            transform: none;
+            box-shadow: none;
+        }
+
+        .completion-message {
+            margin-top: 15px;
+            padding: 10px 20px;
+            background: rgba(46, 204, 113, 0.2);
+            color: #2ecc71;
+            border-radius: 5px;
+            font-weight: 600;
+        }
+    </style>
+
+    <footer>
+        <p>© 2025 Curso HTML & CSS - UC2 Aula 2</p>
+    </footer>
+
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function toggleFloatingWidgets() {
+            const widgets = document.getElementById('floatingWidgets');
+            const toggleBtn = document.querySelector('.floating-toggle-btn');
+            const toggleIcon = document.getElementById('toggleIcon');
+            widgets.classList.toggle('visible');
+            toggleBtn.classList.toggle('widgets-visible');
+            
+            if (widgets.classList.contains('visible')) {
+                toggleIcon.textContent = '▶';
+            } else {
+                toggleIcon.textContent = '◀';
+            }
+        }
+
+        function createNewNotebook() {
+            const title = prompt('Nome do caderno:');
+            if (title && title.trim()) {
+                const notebook = {
+                    id: Date.now(),
+                    title: title.trim(),
+                    content: '',
+                    date: new Date().toLocaleDateString('pt-BR')
+                };
+                const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                notebooks.unshift(notebook);
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                window.location.href = `cadernos.html?id=${notebook.id}`;
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const brasilia = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            const h = String(brasilia.getHours()).padStart(2, '0');
+            const m = String(brasilia.getMinutes()).padStart(2, '0');
+            const s = String(brasilia.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        }
+
+        function updateCalendar() {
+            const now = new Date();
+            const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            const month = now.getMonth();
+            const year = now.getFullYear();
+            const today = now.getDate();
+            
+            document.getElementById('calendar-month-year').textContent = `${months[month]} ${year}`;
+            
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const calendarDays = document.getElementById('calendar-days');
+            calendarDays.innerHTML = '';
+            
+            for (let i = 0; i < firstDay; i++) {
+                const emptyDay = document.createElement('div');
+                emptyDay.className = 'calendar-day empty';
+                calendarDays.appendChild(emptyDay);
+            }
+            
+            for (let day = 1; day <= daysInMonth; day++) {
+                const dayEl = document.createElement('div');
+                dayEl.className = 'calendar-day';
+                dayEl.textContent = day;
+                if (day === today) {
+                    dayEl.classList.add('today');
+                }
+                calendarDays.appendChild(dayEl);
+            }
+        }
+
+        function updateProgress() {
+            const completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const totalLessons = 11;
+            const completed = completedLessons.length;
+            const percentage = (completed / totalLessons) * 100;
+            
+            document.getElementById('progressFill').style.width = `${percentage}%`;
+            document.getElementById('progressLabel').textContent = `${completed}/${totalLessons} Aulas`;
+            document.getElementById('completed-count').textContent = completed;
+            document.getElementById('points-count').textContent = localStorage.getItem('totalPoints') || '0';
+            document.getElementById('streak-count').textContent = localStorage.getItem('streak') || '0';
+        }
+
+        function completeLesson(lessonId) {
+            let completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            if (!completedLessons.includes(lessonId)) {
+                completedLessons.push(lessonId);
+                localStorage.setItem('completedLessons', JSON.stringify(completedLessons));
+                
+                let totalPoints = parseInt(localStorage.getItem('totalPoints') || '0');
+                totalPoints += 10;
+                localStorage.setItem('totalPoints', totalPoints);
+                
+                let studyTime = parseInt(localStorage.getItem('studyTime') || '0');
+                studyTime += 10;
+                localStorage.setItem('studyTime', studyTime);
+                
+                const button = document.getElementById('completeButton');
+                button.disabled = true;
+                button.textContent = '✅ Aula Concluída';
+                
+                const message = document.getElementById('completionMessage');
+                message.style.display = 'block';
+                
+                let achievements = JSON.parse(localStorage.getItem('achievements') || '[]');
+                if (!achievements.includes('first-lesson')) {
+                    achievements.push('first-lesson');
+                    localStorage.setItem('achievements', JSON.stringify(achievements));
+                }
+                
+                if (completedLessons.length === 6 && !achievements.includes('half-way')) {
+                    achievements.push('half-way');
+                    localStorage.setItem('achievements', JSON.stringify(achievements));
+                }
+                
+                if (completedLessons.length === 11 && !achievements.includes('complete-course')) {
+                    achievements.push('complete-course');
+                    localStorage.setItem('achievements', JSON.stringify(achievements));
+                }
+                
+                updateProgress();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', function() {
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            const completedLessons = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const button = document.getElementById('completeButton');
+            
+            if (completedLessons.includes('aula-11')) {
+                button.disabled = true;
+                button.textContent = '✅ Aula Concluída';
+                
+                const message = document.getElementById('completionMessage');
+                message.style.display = 'block';
+                message.textContent = '🎉 Aula já concluída!';
+            }
+            
+            updateClock();
+            setInterval(updateClock, 1000);
+            updateCalendar();
+            updateProgress();
+            
+            // Marcar aula atual como ativa no catálogo
+            const currentLessonCard = document.getElementById('card-aula-11');
+            if (currentLessonCard) {
+                currentLessonCard.classList.add('active');
+            }
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,919 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Meus Cadernos - Anotações</title>
+    <link rel="stylesheet" href="css/dashboard-style.css">
+    <style>
+        .notebook-editor-container {
+            display: grid;
+            grid-template-columns: 250px 1fr;
+            gap: 20px;
+            min-height: calc(100vh - 100px);
+        }
+
+        .notebook-sidebar {
+            background: var(--bg-secondary);
+            padding: 20px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            max-height: calc(100vh - 100px);
+            overflow-y: auto;
+        }
+
+        .notebook-sidebar-header {
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .notebook-sidebar-header h2 {
+            margin: 0 0 15px 0;
+            font-size: 1.2em;
+        }
+
+        .new-notebook-button {
+            width: 100%;
+            background: var(--accent-gradient);
+            color: white;
+            padding: 12px;
+            border: none;
+            border-radius: 10px;
+            font-size: 1em;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .new-notebook-button:hover {
+            transform: scale(1.02);
+        }
+
+        .notebook-list {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .notebook-list-item {
+            padding: 15px;
+            background: var(--bg-tertiary);
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .notebook-list-item:hover {
+            transform: translateX(5px);
+            border-color: var(--accent-primary);
+        }
+
+        .notebook-list-item.active {
+            background: var(--accent-gradient);
+            color: white;
+        }
+
+        .notebook-list-item-title {
+            font-weight: 600;
+            margin-bottom: 5px;
+        }
+
+        .notebook-list-item-date {
+            font-size: 0.8em;
+            opacity: 0.8;
+        }
+
+        .notebook-editor {
+            background: var(--bg-secondary);
+            padding: 30px;
+            border-radius: 15px;
+            border: 1px solid var(--border-color);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .notebook-editor-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 20px;
+            padding-bottom: 20px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .notebook-title-input {
+            font-size: 1.5em;
+            font-weight: 700;
+            padding: 10px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            flex: 1;
+            margin-right: 20px;
+        }
+
+        .notebook-title-input:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .notebook-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .notebook-action-button {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 10px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .save-button {
+            background: var(--accent-gradient);
+            color: white;
+        }
+
+        .save-button:hover {
+            opacity: 0.9;
+        }
+
+        .delete-button {
+            background: #e94560;
+            color: white;
+        }
+
+        .delete-button:hover {
+            background: #d6344d;
+        }
+
+        .back-button {
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+        }
+
+        .back-button:hover {
+            background: var(--border-color);
+        }
+
+        .notebook-textarea {
+            flex: 1;
+            padding: 20px;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            color: var(--text-primary);
+            font-size: 1em;
+            line-height: 1.6;
+            resize: none;
+            min-height: 600px;
+        }
+
+        .notebook-textarea:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        /* Editor Rico com Linhas Numeradas */
+        .rich-editor-container {
+            display: flex;
+            flex: 1;
+            background: var(--bg-tertiary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px;
+            overflow: hidden;
+            min-height: 600px;
+        }
+
+        .rich-editor-container:focus-within {
+            border-color: var(--accent-primary);
+        }
+
+        .line-numbers {
+            background: #f5f5f5;
+            color: #999;
+            padding: 20px 10px 20px 10px;
+            text-align: right;
+            font-family: 'Courier New', monospace;
+            font-size: 14px;
+            line-height: 1.8;
+            width: 40px;
+            flex-shrink: 0;
+            user-select: none;
+            border-right: 1px solid var(--border-color);
+            overflow: hidden;
+        }
+
+        .rich-editor {
+            flex: 1;
+            padding: 20px;
+            font-size: 16px;
+            line-height: 1.8;
+            color: var(--text-primary);
+            outline: none;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            word-wrap: break-word;
+            text-align: left;
+            background: repeating-linear-gradient(
+                #fff,
+                #fff 1.8em,
+                #f0f0f0 1.8em,
+                #f0f0f0 1.9em
+            );
+            background-attachment: local;
+        }
+
+        .rich-editor:focus {
+            background: repeating-linear-gradient(
+                #fff,
+                #fff 1.8em,
+                #e8f4f8 1.8em,
+                #e8f4f8 1.9em
+            );
+            background-attachment: local;
+        }
+
+        .rich-editor:empty:before {
+            content: 'Suas anotações aqui...';
+            color: var(--text-tertiary);
+            pointer-events: none;
+        }
+
+        .rich-editor br {
+            display: block;
+            margin: 0;
+            content: '';
+        }
+
+        .rich-editor div {
+            display: inline;
+            margin: 0;
+            padding: 0;
+        }
+
+        .rich-editor p {
+            margin: 0;
+            padding: 0;
+            display: inline;
+        }
+
+        .rich-editor * {
+            margin: 0;
+            padding: 0;
+            text-indent: 0 !important;
+        }
+
+        .rich-editor {
+            text-indent: 0 !important;
+        }
+
+        /* Barra de Ferramentas de Formatação */
+        .formatting-toolbar {
+            display: flex;
+            gap: 5px;
+            padding: 10px;
+            background: var(--bg-secondary);
+            border: 2px solid var(--border-color);
+            border-radius: 10px 10px 0 0;
+            border-bottom: none;
+            flex-wrap: wrap;
+            align-items: center;
+        }
+
+        .toolbar-button {
+            padding: 8px 12px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            cursor: pointer;
+            font-size: 14px;
+            transition: all 0.2s ease;
+            color: var(--text-primary);
+            min-width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .toolbar-button:hover {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        .toolbar-button.active {
+            background: var(--accent-primary);
+            color: white;
+            border-color: var(--accent-primary);
+        }
+
+        .toolbar-divider {
+            width: 1px;
+            height: 24px;
+            background: var(--border-color);
+            margin: 0 5px;
+        }
+
+        .toolbar-select {
+            padding: 8px;
+            background: var(--bg-tertiary);
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            color: var(--text-primary);
+            font-size: 14px;
+            cursor: pointer;
+        }
+
+        .toolbar-select:focus {
+            outline: none;
+            border-color: var(--accent-primary);
+        }
+
+        .rich-editor-wrapper {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .rich-editor-wrapper .rich-editor-container {
+            border-radius: 0 0 10px 10px;
+            border-top: none;
+        }
+
+        .empty-editor {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: var(--text-secondary);
+        }
+
+        .empty-editor-icon {
+            font-size: 5em;
+            margin-bottom: 20px;
+            opacity: 0.5;
+        }
+
+        .save-notification {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: rgba(46, 204, 113, 0.9);
+            color: white;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: 600;
+            transform: translateY(100px);
+            transition: transform 0.3s ease;
+            z-index: 1000;
+        }
+
+        .save-notification.show {
+            transform: translateY(0);
+        }
+
+        @media (max-width: 768px) {
+            .notebook-editor-container {
+                grid-template-columns: 1fr;
+            }
+
+            .notebook-sidebar {
+                max-height: 200px;
+            }
+        }
+    </style>
+</head>
+<body class="dashboard-body">
+
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+
+    <div class="dashboard">
+
+        <!-- Coluna Lateral Esquerda -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="m">Prog</span><span class="u">rama</span><span class="r">ção</span><br/><span class="">FULL</span><span class="i">STACK
+
+                </span>
+            </div>
+
+            <div class="notebook-actions">
+                <button class="btn-novo-caderno" onclick="createNewNotebook()">
+                    <span class="plus">+</span> NOVO CADERNO
+                </button>
+                <button class="btn-dropdown" onclick="window.location.href='cadernos.html'" aria-label="Opções">▼</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../aulas.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                    PAGINA PRINCIPAL
+                </a>
+                <a href="cadernos.html" class="nav-item active">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    Recentes
+                </a>
+                <a href="favoritos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                    Favoritos
+                </a>
+                <a href="modulos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Módulos
+                </a>
+                <a href="desafios.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Desafios
+                </a>
+            </nav>
+
+            
+</aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="main-area">
+
+            <!-- Banner Superior -->
+            <header class="banner">
+                <h1>📝 Meus Cadernos</h1>
+                <p>Faça anotações sobre as aulas, desafios e estudos</p>
+            </header>
+
+            <div class="notebook-editor-container">
+                <div class="notebook-sidebar">
+                    <div class="notebook-sidebar-header">
+                        <h2>Cadernos</h2>
+                        <button class="new-notebook-button" onclick="createNewNotebook()">➕ Novo Caderno</button>
+                    </div>
+                    <div class="notebook-list" id="notebookList"></div>
+                </div>
+
+                <div class="notebook-editor">
+                    <div id="editorContent">
+                        <div class="empty-editor">
+                            <div class="empty-editor-icon">📓</div>
+                            <p>Selecione um caderno ou crie um novo para começar!</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Widgets Flutuantes -->
+    <div class="floating-widgets" id="floatingWidgets">
+
+        <!-- Widget de Progresso -->
+        <div class="progress-widget">
+            <div class="progress-widget-header">
+                <span class="pie-icon">📊</span>
+                <h2>Seu Progresso</h2>
+            </div>
+            <div class="progress-divider"></div>
+            <p>Complete as aulas para acompanhar sua evolução no curso</p>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressFill"></div>
+                <span class="progress-bar-label" id="progressLabel">0/11 Aulas</span>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="completed-count">0</div>
+                    <div class="stat-label">Aulas Completadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="points-count">0</div>
+                    <div class="stat-label">Pontos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="streak-count">0</div>
+                    <div class="stat-label">Dias Consecutivos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget de Horário e Calendário -->
+        <div class="clock-widget">
+            <div class="clock-header">
+                <div class="clock-time" id="clock">00:00:00</div>
+                <div class="clock-label">Horário de Brasília</div>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-month" id="calendar-month-year">Junho 2024</div>
+                <div class="calendar-weekdays">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+                    <span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div class="calendar-days" id="calendar-days"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botão Seta Flutuante -->
+    <button class="floating-toggle-btn" onclick="toggleFloatingWidgets()" aria-label="Toggle Widgets">
+        <span id="toggleIcon">◀</span>
+    </button>
+
+    <div class="save-notification" id="saveNotification">✅ Salvo com sucesso!</div>
+
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function toggleFloatingWidgets() {
+            const widgets = document.getElementById('floatingWidgets');
+            const toggleBtn = document.querySelector('.floating-toggle-btn');
+            const toggleIcon = document.getElementById('toggleIcon');
+            widgets.classList.toggle('visible');
+            toggleBtn.classList.toggle('widgets-visible');
+            
+            if (widgets.classList.contains('visible')) {
+                toggleIcon.textContent = '▶';
+            } else {
+                toggleIcon.textContent = '◀';
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const brasilia = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            const h = String(brasilia.getHours()).padStart(2, '0');
+            const m = String(brasilia.getMinutes()).padStart(2, '0');
+            const s = String(brasilia.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        }
+
+        function updateCalendar() {
+            const now = new Date();
+            const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                            'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+
+            document.getElementById('calendar-month-year').textContent =
+                `${months[month]} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const container = document.getElementById('calendar-days');
+            container.innerHTML = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                container.appendChild(empty);
+            }
+
+            const highlightDays = [22, 29];
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const el = document.createElement('div');
+                el.className = 'calendar-day';
+                el.textContent = day;
+
+                if (day === today) {
+                    el.classList.add('today');
+                } else if (highlightDays.includes(day)) {
+                    el.classList.add('highlight');
+                }
+
+                container.appendChild(el);
+            }
+        }
+
+        function updateProgress() {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const total = 11;
+            const count = completed.length > 0 ? completed.length : 2;
+            const pct = (count / total) * 100;
+
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = `${count}/${total} Aulas`;
+            document.getElementById('completed-count').textContent = count;
+            document.getElementById('points-count').textContent = count * 10;
+            document.getElementById('streak-count').textContent = 0;
+        }
+
+        let currentNotebookId = null;
+
+        document.addEventListener('DOMContentLoaded', function() {
+            updateClock();
+            updateCalendar();
+            updateProgress();
+            setInterval(updateClock, 1000);
+            setInterval(updateCalendar, 60000);
+
+            const savedTheme = localStorage.getItem('theme') || 'light';
+            document.body.setAttribute('data-theme', savedTheme);
+            
+            // Verificar se há ID na URL
+            const urlParams = new URLSearchParams(window.location.search);
+            const notebookId = urlParams.get('id');
+            
+            if (notebookId) {
+                currentNotebookId = parseInt(notebookId);
+            }
+            
+            renderNotebookList();
+            
+            if (currentNotebookId) {
+                openNotebook(currentNotebookId);
+            }
+        });
+
+        function createNewNotebook() {
+            const title = prompt('Nome do caderno:');
+            if (title && title.trim()) {
+                const notebook = {
+                    id: Date.now(),
+                    title: title.trim(),
+                    content: '',
+                    date: new Date().toLocaleDateString('pt-BR')
+                };
+                
+                let notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                notebooks.unshift(notebook);
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                
+                currentNotebookId = notebook.id;
+                renderNotebookList();
+                openNotebook(notebook.id);
+            }
+        }
+
+        function renderNotebookList() {
+            const list = document.getElementById('notebookList');
+            const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+            
+            if (notebooks.length === 0) {
+                list.innerHTML = '<p style="text-align: center; color: var(--text-secondary);">Nenhum caderno ainda.</p>';
+                return;
+            }
+            
+            list.innerHTML = notebooks.map(notebook => `
+                <div class="notebook-list-item ${currentNotebookId === notebook.id ? 'active' : ''}" 
+                     onclick="openNotebook(${notebook.id})">
+                    <div class="notebook-list-item-title">${notebook.title}</div>
+                    <div class="notebook-list-item-date">📅 ${notebook.date}</div>
+                </div>
+            `).join('');
+        }
+
+        function openNotebook(id) {
+            currentNotebookId = id;
+            const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+            const notebook = notebooks.find(n => n.id === id);
+            
+            if (!notebook) return;
+            
+            renderNotebookList();
+            
+            const editorContent = document.getElementById('editorContent');
+            editorContent.innerHTML = `
+                <div class="notebook-editor-header">
+                    <input type="text" 
+                           class="notebook-title-input" 
+                           value="${notebook.title}" 
+                           id="notebookTitle"
+                           onchange="updateNotebookTitle(this.value)">
+                    <div class="notebook-actions">
+                        <button class="notebook-action-button save-button" onclick="saveNotebook()">💾 Salvar</button>
+                        <button class="notebook-action-button delete-button" onclick="deleteNotebook()">🗑️ Excluir</button>
+                    </div>
+                </div>
+                <div class="rich-editor-wrapper">
+                    <div class="formatting-toolbar">
+                        <button class="toolbar-button" onclick="formatText('bold')" title="Negrito"><strong>B</strong></button>
+                        <button class="toolbar-button" onclick="formatText('italic')" title="Itálico"><em>I</em></button>
+                        <button class="toolbar-button" onclick="formatText('underline')" title="Sublinhado"><u>U</u></button>
+                        <button class="toolbar-button" onclick="formatText('strikeThrough')" title="Tachado"><s>S</s></button>
+                        
+                        <div class="toolbar-divider"></div>
+                        
+                        <button class="toolbar-button" onclick="formatText('insertUnorderedList')" title="Lista">• List</button>
+                        <button class="toolbar-button" onclick="formatText('insertOrderedList')" title="Lista Numerada">1. List</button>
+                        
+                        <div class="toolbar-divider"></div>
+                        
+                        <button class="toolbar-button" onclick="formatText('justifyLeft')" title="Alinhar à Esquerda">⬅</button>
+                        <button class="toolbar-button" onclick="formatText('justifyCenter')" title="Centralizar">⬌</button>
+                        <button class="toolbar-button" onclick="formatText('justifyRight')" title="Alinhar à Direita">➡</button>
+                        
+                        <div class="toolbar-divider"></div>
+                        
+                        <select class="toolbar-select" onchange="changeFontSize(this.value)" title="Tamanho da Fonte">
+                            <option value="1">Pequeno</option>
+                            <option value="3" selected>Normal</option>
+                            <option value="5">Grande</option>
+                            <option value="7">Muito Grande</option>
+                        </select>
+                        
+                        <select class="toolbar-select" onchange="changeFontColor(this.value)" title="Cor do Texto">
+                            <option value="#000000">Preto</option>
+                            <option value="#e74c3c">Vermelho</option>
+                            <option value="#3498db">Azul</option>
+                            <option value="#2ecc71">Verde</option>
+                            <option value="#f39c12">Laranja</option>
+                            <option value="#9b59b6">Roxo</option>
+                        </select>
+                        
+                        <div class="toolbar-divider"></div>
+                        
+                        <button class="toolbar-button" onclick="formatText('removeFormat')" title="Remover Formatação">✕</button>
+                    </div>
+                    <div class="rich-editor-container">
+                        <div class="line-numbers" id="lineNumbers">1</div>
+                        <div class="rich-editor" 
+                             contenteditable="true" 
+                             id="notebookContent"
+                             oninput="updateLineNumbers()"
+                             onscroll="syncScroll()">${notebook.content}</div>
+                    </div>
+                </div>
+            `;
+            
+            // Atualizar números das linhas após carregar
+            setTimeout(updateLineNumbers, 100);
+        }
+
+        function updateNotebookTitle(title) {
+            const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+            const notebookIndex = notebooks.findIndex(n => n.id === currentNotebookId);
+            
+            if (notebookIndex !== -1) {
+                notebooks[notebookIndex].title = title.trim();
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                renderNotebookList();
+            }
+        }
+
+        function saveNotebook() {
+            const title = document.getElementById('notebookTitle').value.trim();
+            const content = document.getElementById('notebookContent').value;
+            
+            if (!title) {
+                alert('Por favor, dê um nome ao seu caderno.');
+                return;
+            }
+            
+            let notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+            const notebookIndex = notebooks.findIndex(n => n.id === currentNotebookId);
+            
+            if (notebookIndex !== -1) {
+                notebooks[notebookIndex].title = title;
+                notebooks[notebookIndex].content = content;
+                notebooks[notebookIndex].date = new Date().toLocaleDateString('pt-BR');
+                
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                
+                showSaveNotification();
+                renderNotebookList();
+            }
+        }
+
+        function deleteNotebook() {
+            if (confirm('Tem certeza que deseja excluir este caderno? Esta ação não pode ser desfeita.')) {
+                let notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                notebooks = notebooks.filter(n => n.id !== currentNotebookId);
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                
+                currentNotebookId = null;
+                renderNotebookList();
+                
+                document.getElementById('editorContent').innerHTML = `
+                    <div class="empty-editor">
+                        <div class="empty-editor-icon">📓</div>
+                        <p>Selecione um caderno ou crie um novo para começar!</p>
+                    </div>
+                `;
+            }
+        }
+
+        function showSaveNotification() {
+            const notification = document.getElementById('saveNotification');
+            notification.classList.add('show');
+            
+            setTimeout(() => {
+                notification.classList.remove('show');
+            }, 2000);
+        }
+
+        // Funções do Editor Rico
+        function formatText(command) {
+            document.execCommand(command, false, null);
+            document.getElementById('notebookContent').focus();
+        }
+
+        function changeFontSize(size) {
+            document.execCommand('fontSize', false, size);
+            document.getElementById('notebookContent').focus();
+        }
+
+        function changeFontColor(color) {
+            document.execCommand('foreColor', false, color);
+            document.getElementById('notebookContent').focus();
+        }
+
+        function updateLineNumbers() {
+            const editor = document.getElementById('notebookContent');
+            const lineNumbers = document.getElementById('lineNumbers');
+            
+            if (!editor || !lineNumbers) return;
+            
+            // Get text content and count lines properly
+            const text = editor.innerText || editor.textContent || '';
+            const lineCount = text.split('\n').length;
+            
+            let numbers = '';
+            for (let i = 1; i <= lineCount; i++) {
+                numbers += i + '\n';
+            }
+            lineNumbers.textContent = numbers;
+        }
+
+        // Sync scroll between line numbers and editor
+        function syncScroll() {
+            const editor = document.getElementById('notebookContent');
+            const lineNumbers = document.getElementById('lineNumbers');
+            
+            if (editor && lineNumbers) {
+                lineNumbers.scrollTop = editor.scrollTop;
+            }
+        }
+
+        // Handle Enter key to use <br> instead of <div> for line breaks
+        document.addEventListener('keydown', function(e) {
+            if (e.target && e.target.id === 'notebookContent' && e.key === 'Enter') {
+                e.preventDefault();
+                document.execCommand('insertLineBreak');
+                updateLineNumbers();
+            }
+        });
+
+        // Sobrescrever a função saveNotebook para usar o novo editor
+        const originalSaveNotebook = saveNotebook;
+        saveNotebook = function() {
+            const title = document.getElementById('notebookTitle').value.trim();
+            const content = document.getElementById('notebookContent').innerHTML;
+            
+            if (!title) {
+                alert('Por favor, dê um nome ao seu caderno.');
+                return;
+            }
+            
+            let notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+            const notebookIndex = notebooks.findIndex(n => n.id === currentNotebookId);
+            
+            if (notebookIndex !== -1) {
+                notebooks[notebookIndex].title = title;
+                notebooks[notebookIndex].content = content;
+                notebooks[notebookIndex].date = new Date().toLocaleDateString('pt-BR');
+                
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                
+                showSaveNotification();
+                renderNotebookList();
+            }
+        };
+
+        // Auto-save a cada 30 segundos
+        setInterval(() => {
+            if (currentNotebookId) {
+                const title = document.getElementById('notebookTitle');
+                const content = document.getElementById('notebookContent');
+                
+                if (title && content) {
+                    // Salvar usando innerHTML para o editor rico
+                    const titleValue = title.value.trim();
+                    const contentValue = content.innerHTML;
+                    
+                    if (titleValue) {
+                        let notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                        const notebookIndex = notebooks.findIndex(n => n.id === currentNotebookId);
+                        
+                        if (notebookIndex !== -1) {
+                            notebooks[notebookIndex].title = titleValue;
+                            notebooks[notebookIndex].content = contentValue;
+                            notebooks[notebookIndex].date = new Date().toLocaleDateString('pt-BR');
+                            localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                            renderNotebookList();
+                        }
+                    }
+                }
+            }
+        }, 30000);
+    </script>
+</body>
+</html>

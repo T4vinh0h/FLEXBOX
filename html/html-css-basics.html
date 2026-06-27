@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Básicos de HTML e CSS</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+
+    <!--=================================== O QUE É HTML ===================================-->
+    <h2>▶ O QUE É HTML?</h2>
+    
+    <p class="info">HTML (HyperText Markup Language) é a linguagem de marcação usada para criar páginas web.</p>
+    
+    <div class="note-block">
+        <p>• HTML não é uma linguagem de programação</p>
+        <p>• HTML é uma linguagem de marcação (usa tags para estruturar conteúdo)</p>
+        <p>• Todo site que você acessa usa HTML</p>
+    </div>
+
+    <p class="info">Exemplo: Quando você acessa um site, o navegador lê o código HTML e mostra a página formatada na tela.</p>
+
+    <!--=================================== O QUE É CSS ===================================-->
+    <h2>▶ O QUE É CSS?</h2>
+    
+    <p class="info">CSS (Cascading Style Sheets) é a linguagem usada para estilizar páginas HTML.</p>
+    
+    <div class="note-block">
+        <p>• CSS define cores, tamanhos, fontes, espaçamentos</p>
+        <p>• Deixa as páginas bonitas e organizadas</p>
+        <p>• Trabalha junto com o HTML</p>
+    </div>
+
+    <p class="info">Resumo: - HTML = Estrutura e conteúdo (texto, imagens, links) - CSS = Aparência e estilo (cores, tamanhos, posicionamento)</p>
+
+    <!--=================================== O QUE É VSCODE ===================================-->
+    <h2>▶ O QUE É O VSCODE?</h2>
+    
+    <p class="info">Visual Studio Code (VSCode) é um editor de código gratuito e poderoso.</p>
+    
+    <div class="note-block">
+        <p><strong>Por que usar o VSCode?</strong></p>
+        <p>• Gratuito e leve</p>
+        <p>• Destaca a sintaxe do código com cores</p>
+        <p>• Autocompleta código</p>
+        <p>• Tem extensões úteis</p>
+        <p>• Funciona em Windows, Mac e Linux</p>
+    </div>
+
+    <!--=================================== CRIANDO ARQUIVO HTML ===================================-->
+    <h2>▶ COMO CRIAR UM ARQUIVO HTML NO VSCODE?</h2>
+    
+    <div class="note-block">
+        <p><strong>Passo a passo:</strong></p>
+        <p>1. Abra o VSCode</p>
+        <p>2. Clique em File → New File (ou Ctrl + N)</p>
+        <p>3. Salve o arquivo com extensão .html (exemplo: index.html)</p>
+        <p>4. Pronto! Agora pode começar a escrever HTML</p>
+    </div>
+
+    <!--=================================== O QUE É ARQUIVO HTML ===================================-->
+    <h2>▶ O QUE É UM ARQUIVO .HTML?</h2>
+    
+    <p class="info">Um arquivo .html é um arquivo de texto com código HTML que o navegador consegue ler e exibir.</p>
+    
+    <div class="note-block">
+        <p><strong>Características:</strong></p>
+        <p>• Extensão: .html ou .htm</p>
+        <p>• Pode ser aberto em qualquer navegador (Chrome, Firefox, Edge)</p>
+        <p>• Pode ser editado em qualquer editor de texto</p>
+    </div>
+
+    <p class="info">Exemplo de nome de arquivo: - index.html (página principal) - sobre.html - contato.html</p>
+
+    <!--=================================== ESTRUTURA BÁSICA ===================================-->
+    <h2>▶ ESTRUTURA BÁSICA DO HTML &nbsp;⚠️ Atalho: ! + Enter</h2>
+    
+    <p class="info">No VSCode, digite ! (exclamação) e aperte Enter. Ele cria automaticamente esta estrutura:</p>
+    
+    <div class="code-block">
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="en"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Document&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <p class="info">Entendendo cada parte:</p>
+
+    <div class="note-block">
+        <p><strong>&lt;!DOCTYPE html&gt;</strong> - Diz ao navegador que este é um documento HTML5 (versão mais recente).</p>
+        <p><strong>&lt;html lang="en"&gt;</strong> - Tag que envolve todo o conteúdo da página. - lang="en" define o idioma (mude para "pt-BR" para português)</p>
+        <p><strong>&lt;head&gt;</strong> - Cabeçalho com informações que não aparecem na página (metadados, título da aba, links CSS).</p>
+        <p><strong>&lt;meta charset="UTF-8"&gt;</strong> - Define a codificação de caracteres (permite acentos e caracteres especiais).</p>
+        <p><strong>&lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;</strong> - Torna o site responsivo em celulares e tablets.</p>
+        <p><strong>&lt;title&gt;Document&lt;/title&gt;</strong> - Título que aparece na aba do navegador.</p>
+        <p><strong>&lt;body&gt;</strong> - Corpo da página - tudo que você escrever aqui aparece na tela.</p>
+    </div>
+
+    <!--=================================== TÍTULOS HTML ===================================-->
+    <h2>▶ TAGS HTML - TÍTULOS</h2>
+    
+    <p class="info">HTML tem 6 níveis de títulos, de h1 (maior) até h6 (menor).</p>
+    
+    <div class="demo-block">
+        <h1>Título Principal (h1)</h1>
+        <h2>Subtítulo (h2)</h2>
+        <h3>Título de Seção (h3)</h3>
+        <h4>Título Menor (h4)</h4>
+        <h5>Título Ainda Menor (h5)</h5>
+        <h6>Título Mínimo (h6)</h6>
+    </div>
+
+    <p class="info">Sintaxe:</p>
+    
+    <div class="code-block">
+        <pre>&lt;h1&gt;Título Principal&lt;/h1&gt;
+&lt;h2&gt;Subtítulo&lt;/h2&gt;
+&lt;h3&gt;Título de Seção&lt;/h3&gt;
+&lt;h4&gt;Título Menor&lt;/h4&gt;
+&lt;h5&gt;Título Ainda Menor&lt;/h5&gt;
+&lt;h6&gt;Título Mínimo&lt;/h6&gt;</pre>
+    </div>
+
+    <p class="info">Dicas: • Use h1 para o título principal da página (apenas um por página) • Use h2 para seções importantes • Use h3 para subseções • Não pule níveis (não vá direto de h1 para h4)</p>
+
+    <!--=================================== PARÁGRAFOS ===================================-->
+    <h2>▶ TAG DE PARÁGRAFO</h2>
+    
+    <p class="info">A tag &lt;p&gt; é usada para criar parágrafos de texto.</p>
+    
+    <div class="demo-block">
+        <h1>Bem-vindo ao meu site</h1>
+        <p>Este é o primeiro parágrafo do site.</p>
+        <p>Este é o segundo parágrafo com mais informações.</p>
+    </div>
+
+    <p class="info">Sintaxe:</p>
+    
+    <div class="code-block">
+        <pre>&lt;p&gt;Este é um parágrafo de texto.&lt;/p&gt;
+&lt;p&gt;Este é outro parágrafo.&lt;/p&gt;</pre>
+    </div>
+
+    <p class="info">Dica: O navegador automaticamente coloca espaço entre parágrafos.</p>
+
+    <!--=================================== IMAGENS ===================================-->
+    <h2>▶ TAG DE IMAGEM</h2>
+    
+    <p class="info">A tag &lt;img&gt; é usada para inserir imagens na página.</p>
+    
+    <p class="info">Sintaxe:</p>
+    
+    <div class="code-block">
+        <pre>&lt;img src="caminho-da-imagem.jpg" alt="Descrição da imagem"&gt;</pre>
+    </div>
+
+    <p class="info">Atributos importantes:</p>
+    
+    <div class="note-block">
+        <p><strong>src (source = fonte)</strong> - Caminho da imagem - Pode ser local: "foto.jpg" - Ou da internet: "https://site.com/imagem.jpg"</p>
+        <p><strong>alt (alternative = alternativo)</strong> - Texto alternativo caso a imagem não carregue - Usado por leitores de tela (acessibilidade) - Descreve o que tem na imagem</p>
+    </div>
+
+    <p class="info">Exemplos:</p>
+    
+    <div class="code-block">
+        <pre>&lt;!-- Imagem local (na mesma pasta) --&gt;
+&lt;img src="logo.png" alt="Logo da empresa"&gt;
+
+&lt;!-- Imagem da internet --&gt;
+&lt;img src="https://example.com/foto.jpg" alt="Foto de exemplo"&gt;
+
+&lt;!-- Imagem em uma subpasta --&gt;
+&lt;img src="imagens/banner.jpg" alt="Banner do site"&gt;</pre>
+    </div>
+
+    <p class="info">Importante: A tag &lt;img&gt; não tem tag de fechamento (é uma tag auto-fechada) - Correto: &lt;img src="foto.jpg" alt="Foto"&gt; - Errado: &lt;img src="foto.jpg" alt="Foto"&gt;&lt;/img&gt;</p>
+
+    <!--=================================== LINKS ===================================-->
+    <h2>▶ TAG DE LINK</h2>
+    
+    <p class="info">A tag &lt;a&gt; (anchor = âncora) cria links clicáveis.</p>
+    
+    <div class="demo-block">
+        <p>Confira meu perfil:</p>
+        <a href="https://www.linkedin.com" target="_blank">LinkedIn</a>
+    </div>
+
+    <p class="info">Sintaxe:</p>
+    
+    <div class="code-block">
+        <pre>&lt;a href="destino"&gt;Texto do link&lt;/a&gt;</pre>
+    </div>
+
+    <p class="info">Atributo principal:</p>
+    
+    <div class="note-block">
+        <p><strong>href (hyperlink reference)</strong> - Para onde o link vai levar - Pode ser outra página do site - Pode ser um site externo</p>
+    </div>
+
+    <p class="info">Exemplos:</p>
+    
+    <div class="code-block">
+        <pre>&lt;!-- Link para outra página do site --&gt;
+&lt;a href="sobre.html"&gt;Sobre nós&lt;/a&gt;
+
+&lt;!-- Link para site externo --&gt;
+&lt;a href="https://www.google.com"&gt;Ir para o Google&lt;/a&gt;
+
+&lt;!-- Link que abre em nova aba --&gt;
+&lt;a href="https://www.google.com" target="_blank"&gt;Google (nova aba)&lt;/a&gt;</pre>
+    </div>
+
+    <p class="info">Dica: Use target="_blank" para abrir o link em uma nova aba.</p>
+
+    <!--=================================== QUEBRA DE LINHA ===================================-->
+    <h2>▶ TAG DE QUEBRA DE LINHA</h2>
+    
+    <p class="info">A tag &lt;br&gt; cria uma quebra de linha (pula para a próxima linha).</p>
+    
+    <div class="demo-block">
+        <p>
+            Rua das Flores, 123<br>
+            Centro - São Paulo/SP<br>
+            CEP: 01234-567
+        </p>
+    </div>
+
+    <p class="info">Sintaxe:</p>
+    
+    <div class="code-block">
+        <pre>Primeira linha&lt;br&gt;
+Segunda linha&lt;br&gt;
+Terceira linha</pre>
+    </div>
+
+    <p class="info">Quando usar: Para endereços, Para poemas, Quando precisa quebrar linha dentro de um parágrafo</p>
+    <p class="info">A tag &lt;br&gt; não tem tag de fechamento</p>
+
+    <!--=================================== LINHA HORIZONTAL ===================================-->
+    <h2>▶ TAG DE LINHA HORIZONTAL</h2>
+    
+    <p class="info">A tag &lt;hr&gt; cria uma linha horizontal (separador visual).</p>
+    
+    <div class="demo-block">
+        <h2>Seção 1</h2>
+        <p>Conteúdo da primeira seção.</p>
+        <hr>
+        <h2>Seção 2</h2>
+        <p>Conteúdo da segunda seção.</p>
+    </div>
+
+    <p class="info">Sintaxe:</p>
+    
+    <div class="code-block">
+        <pre>&lt;hr&gt;</pre>
+    </div>
+
+    <p class="info">Quando usar: • Para separar seções do conteúdo • Para criar divisões visuais</p>
+    <p class="info">A tag &lt;hr&gt; não tem tag de fechamento</p>
+
+    <!--=================================== EXEMPLO PRÁTICO ===================================-->
+    <h2>▶ EXEMPLO PRÁTICO COMPLETO</h2>
+    
+    <div class="code-block">
+        <pre>&lt;!DOCTYPE html&gt;
+&lt;html lang="pt-BR"&gt;
+&lt;head&gt;
+    &lt;meta charset="UTF-8"&gt;
+    &lt;meta name="viewport" content="width=device-width, initial-scale=1.0"&gt;
+    &lt;title&gt;Meu Primeiro Site&lt;/title&gt;
+&lt;/head&gt;
+&lt;body&gt;
+    &lt;h1&gt;Bem-vindo ao Meu Site&lt;/h1&gt;
+    &lt;p&gt;Este é meu primeiro site criado com HTML!&lt;/p&gt;
+    
+    &lt;h2&gt;Sobre Mim&lt;/h2&gt;
+    &lt;p&gt;Meu nome é João e estou aprendendo desenvolvimento web.&lt;/p&gt;
+    &lt;p&gt;Estou muito animado com esta jornada de aprendizado.&lt;/p&gt;
+    
+    &lt;hr&gt;
+    
+    &lt;h2&gt;Minha Foto&lt;/h2&gt;
+    &lt;img src="foto.jpg" alt="Minha foto de perfil"&gt;
+    
+    &lt;h2&gt;Links Úteis&lt;/h2&gt;
+    &lt;p&gt;Confira meu perfil:&lt;/p&gt;
+    &lt;a href="https://www.linkedin.com" target="_blank"&gt;LinkedIn&lt;/a&gt;
+    
+    &lt;hr&gt;
+    
+    &lt;h3&gt;Contato&lt;/h3&gt;
+    &lt;p&gt;
+        Email: joao@email.com&lt;br&gt;
+        Telefone: (11) 98765-4321&lt;br&gt;
+        São Paulo - SP
+    &lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;</pre>
+    </div>
+
+    <!--=================================== RESUMO ===================================-->
+    <h2>▶ RESUMO DAS TAGS APRENDIDAS</h2>
+    
+    <div class="table-block">
+        <table>
+            <thead>
+                <tr>
+                    <th>Tag</th>
+                    <th>Descrição</th>
+                    <th>Tem Fechamento?</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>&lt;h1&gt; até &lt;h6&gt;</td>
+                    <td>Títulos (6 níveis)</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
+                    <td>&lt;p&gt;</td>
+                    <td>Parágrafo</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
+                    <td>&lt;img&gt;</td>
+                    <td>Imagem</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>&lt;a&gt;</td>
+                    <td>Link</td>
+                    <td>Sim</td>
+                </tr>
+                <tr>
+                    <td>&lt;br&gt;</td>
+                    <td>Quebra de linha</td>
+                    <td>Não</td>
+                </tr>
+                <tr>
+                    <td>&lt;hr&gt;</td>
+                    <td>Linha horizontal</td>
+                    <td>Não</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <!--=================================== DICAS IMPORTANTES ===================================-->
+    <h2>▶ DICAS IMPORTANTES</h2>
+    
+    <div class="note-block">
+        <p>• Sempre salve o arquivo com extensão .html</p>
+        <p>• Use lang="pt-BR" para sites em português</p>
+        <p>• Altere o &lt;title&gt; para um nome descritivo</p>
+        <p>• Todo conteúdo visível vai dentro do &lt;body&gt;</p>
+        <p>• Sempre adicione o atributo alt nas imagens</p>
+        <p>• Teste seu código abrindo o arquivo no navegador</p>
+    </div>
+
+    <p class="info">Atalho útil: No VSCode, digite ! + Enter para criar a estrutura HTML básica!</p>
+
+</body>
+</html>
