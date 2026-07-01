@@ -271,6 +271,32 @@
                         </div>
                     </a>
 
+                    <a href="html/aula-12-banco-de-dados.html" class="lesson-card" id="card-aula-12" data-lesson="aula-12">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-12', 'Banco de Dados', 'Aprenda sobre bancos de dados, modelagem conceitual, lógica e SQL.', 'html/aula-12-banco-de-dados.html')">★</span>
+                        <span class="lesson-badge">Aula 12</span>
+                        <h3>Banco de Dados</h3>
+                        <p>Aprenda sobre bancos de dados, modelagem conceitual, lógica e SQL.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">MySQL</span>
+                            <span class="lesson-tag">SGBD</span>
+                            <span class="lesson-tag">SQL</span>
+                            <span class="lesson-tag">Modelagem</span>
+                        </div>
+                    </a>
+
+                    <a href="html/aula-13-engenharia-requisitos.html" class="lesson-card" id="card-aula-13" data-lesson="aula-13">
+                        <span class="favorite-star" onclick="event.preventDefault(); toggleFavorite('lesson', 'aula-13', 'Engenharia de Requisitos', 'Aprenda a elicitar, analisar e documentar requisitos de software.', 'html/aula-13-engenharia-requisitos.html')">★</span>
+                        <span class="lesson-badge">Aula 13</span>
+                        <h3>Engenharia de Requisitos</h3>
+                        <p>Aprenda a elicitar, analisar e documentar requisitos de software.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">RNE</span>
+                            <span class="lesson-tag">RF</span>
+                            <span class="lesson-tag">RNF</span>
+                            <span class="lesson-tag">Prototipação</span>
+                        </div>
+                    </a>
+
                 </div>
             </section>
 
@@ -416,7 +442,7 @@
 
         function updateProgress() {
             const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
-            const total = 11;
+            const total = 13;
             const count = completed.length > 0 ? completed.length : 2;
             const pct = (count / total) * 100;
 
