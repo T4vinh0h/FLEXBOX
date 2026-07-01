@@ -1,0 +1,959 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 12 - Banco de Dados</title>
+    <link rel="stylesheet" href="css/dashboard-style.css">
+    <link rel="stylesheet" href="css/curso-style.css">
+    <link rel="stylesheet" href="css/demos-style.css">
+    <link rel="stylesheet" href="css/lesson-style.css">
+</head>
+<body class="dashboard-body">
+
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+
+    <div class="dashboard">
+
+        <!-- Coluna Lateral Esquerda -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="m">Prog</span><span class="u">rama</span><span class="r">ção</span><br/><span class="">FULL</span><span class="i">STACK
+
+                </span>
+            </div>
+
+            <div class="notebook-actions">
+                <button class="btn-novo-caderno" onclick="createNewNotebook()">
+                    <span class="plus">+</span> NOVO CADERNO
+                </button>
+                <button class="btn-dropdown" onclick="window.location.href='cadernos.html'" aria-label="Opções">▼</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../aulas.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                    PAGINA PRINCIPAL
+                </a>
+                <a href="cadernos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    Recentes
+                </a>
+                <a href="favoritos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                    Favoritos
+                </a>
+                <a href="modulos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Módulos
+                </a>
+                <a href="desafios.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Desafios
+                </a>
+            </nav>
+
+            
+</aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="main-area">
+
+            <!-- Banner Superior -->
+            <header class="banner">
+                <h1>🗄️ Aula 12 - Banco de Dados</h1>
+                <p>Prof. Pedro Lobato | UniSenac</p>
+            </header>
+
+            <!-- Catálogo de Aulas -->
+            <section class="lessons-area">
+                <h2>Catálogo de Aulas</h2>
+                <div class="lessons-grid">
+                    <a href="aula-1-listas.html" class="lesson-card" id="card-aula-1" data-lesson="aula-1">
+                        <span class="lesson-badge">Aula 1</span>
+                        <h3>Listas em HTML</h3>
+                        <p>Aprenda a organizar informações com listas ordenadas e não ordenadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">UL</span>
+                            <span class="lesson-tag">OL</span>
+                            <span class="lesson-tag">LI</span>
+                            <span class="lesson-tag">Aninhadas</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-2-css-basico.html" class="lesson-card" id="card-aula-2" data-lesson="aula-2">
+                        <span class="lesson-badge">Aula 2</span>
+                        <h3>CSS Básico</h3>
+                        <p>Entenda os três tipos de CSS e como aplicá-los em suas páginas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">Interno</span>
+                            <span class="lesson-tag">Externo</span>
+                            <span class="lesson-tag">Seletores</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-3-propriedades-css.html" class="lesson-card" id="card-aula-3" data-lesson="aula-3">
+                        <span class="lesson-badge">Aula 3</span>
+                        <h3>Propriedades CSS Essenciais</h3>
+                        <p>Domine as propriedades fundamentais para estilizar texto e elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Color</span>
+                            <span class="lesson-tag">Background</span>
+                            <span class="lesson-tag">Font</span>
+                            <span class="lesson-tag">Cores</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-4-classes-ids.html" class="lesson-card" id="card-aula-4" data-lesson="aula-4">
+                        <span class="lesson-badge">Aula 4</span>
+                        <h3>Classes e IDs</h3>
+                        <p>Aprenda a usar seletores CSS para estilizar elementos específicos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Classes</span>
+                            <span class="lesson-tag">IDs</span>
+                            <span class="lesson-tag">Seletores</span>
+                            <span class="lesson-tag">Bordas</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-5-box-model.html" class="lesson-card" id="card-aula-5" data-lesson="aula-5">
+                        <span class="lesson-badge">Aula 5</span>
+                        <h3>Box Model</h3>
+                        <p>Entenda como funciona o modelo de caixa: margin, padding e border.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Margin</span>
+                            <span class="lesson-tag">Padding</span>
+                            <span class="lesson-tag">Border</span>
+                            <span class="lesson-tag">Box-sizing</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-6-display-div-span.html" class="lesson-card" id="card-aula-6" data-lesson="aula-6">
+                        <span class="lesson-badge">Aula 6</span>
+                        <h3>Display, DIV e SPAN</h3>
+                        <p>Diferença entre elementos block e inline, e quando usar DIV ou SPAN.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Block</span>
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">DIV</span>
+                            <span class="lesson-tag">SPAN</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-7-position-zindex.html" class="lesson-card" id="card-aula-7" data-lesson="aula-7">
+                        <span class="lesson-badge">Aula 7</span>
+                        <h3>Posição e Camadas</h3>
+                        <p>Aprenda position, z-index e como controlar a sobreposição de elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Relative</span>
+                            <span class="lesson-tag">Absolute</span>
+                            <span class="lesson-tag">Fixed</span>
+                            <span class="lesson-tag">Z-index</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-8-flexbox.html" class="lesson-card" id="card-aula-8" data-lesson="aula-8">
+                        <span class="lesson-badge">Aula 8</span>
+                        <h3>Flexbox</h3>
+                        <p>Domine o layout flexível com flex container, items, justify e align.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Flex</span>
+                            <span class="lesson-tag">Justify</span>
+                            <span class="lesson-tag">Align</span>
+                            <span class="lesson-tag">Gap</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-9-semantic-html.html" class="lesson-card" id="card-aula-9" data-lesson="aula-9">
+                        <span class="lesson-badge">Aula 9</span>
+                        <h3>HTML Semântico</h3>
+                        <p>Use tags semânticas para estruturar páginas acessíveis e organizadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Header</span>
+                            <span class="lesson-tag">Main</span>
+                            <span class="lesson-tag">Footer</span>
+                            <span class="lesson-tag">Nav</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-10-formularios.html" class="lesson-card" id="card-aula-10" data-lesson="aula-10">
+                        <span class="lesson-badge">Aula 10</span>
+                        <h3>Formulários e Tabelas</h3>
+                        <p>Crie formulários interativos e tabelas organizadas com HTML.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Inputs</span>
+                            <span class="lesson-tag">Labels</span>
+                            <span class="lesson-tag">Tables</span>
+                            <span class="lesson-tag">Forms</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-11-git-github.html" class="lesson-card" id="card-aula-11" data-lesson="aula-11">
+                        <span class="lesson-badge">Aula 11</span>
+                        <h3>Git e GitHub</h3>
+                        <p>Versione seu código com Git e publique projetos no GitHub.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Commit</span>
+                            <span class="lesson-tag">Push</span>
+                            <span class="lesson-tag">Pull</span>
+                            <span class="lesson-tag">Branch</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-12-banco-de-dados.html" class="lesson-card" id="card-aula-12" data-lesson="aula-12">
+                        <span class="lesson-badge">Aula 12</span>
+                        <h3>Banco de Dados</h3>
+                        <p>Aprenda sobre bancos de dados, modelagem conceitual, lógica e SQL.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">MySQL</span>
+                            <span class="lesson-tag">SGBD</span>
+                            <span class="lesson-tag">SQL</span>
+                            <span class="lesson-tag">Modelagem</span>
+                        </div>
+                    </a>
+                </div>
+            </section>
+
+            <!-- Conteúdo da Aula -->
+            <div class="lesson-content-container">
+    <div class="content-section">
+        <h2>🗄️ O Que é Banco de Dados?</h2>
+        <p>Banco de dados é um jeito organizado de guardar informações no computador. Serve para armazenar, consultar e atualizar dados de forma rápida e segura. Está presente em quase tudo: sites, aplicativos, empresas, escolas e muito mais!</p>
+        
+        <h3>Características Principais:</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Característica</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Grande Volume</strong></td>
+                    <td>Lida com grandes volumes de dados</td>
+                </tr>
+                <tr>
+                    <td><strong>Recursos</strong></td>
+                    <td>Oferece recursos poderosos para gerenciar estrutura, integridade, segurança e acesso</td>
+                </tr>
+                <tr>
+                    <td><strong>Confiável</strong></td>
+                    <td>Garante consistência e confiabilidade das informações</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <div class="tip-block">
+            <p><strong>💡 Importante:</strong> Banco de dados é onde guardamos informações de forma organizada. Eles são usados em muitos lugares e ajudam a acessar, proteger e controlar dados com eficiência.</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>🔧 SGBD - Sistema de Gerenciamento de Banco de Dados</h2>
+        <p>SGBD é um software que permite a criação, a definição, o armazenamento, a recuperação e a manipulação de dados em um banco de dados.</p>
+        
+        <h3>Principais SGBDs:</h3>
+        <div class="demo-section">
+            <ul>
+                <li><strong>MySQL</strong> - Open source, muito popular</li>
+                <li><strong>PostgreSQL</strong> - Open source, avançado</li>
+                <li><strong>Oracle</strong> - Corporativo, robusto</li>
+                <li><strong>SQL Server</strong> - Microsoft, enterprise</li>
+                <li><strong>SQLite</strong> - Leve, embutido</li>
+                <li><strong>MongoDB</strong> - NoSQL, documentos</li>
+            </ul>
+        </div>
+
+        <h3>Operações em um SGBD:</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Operação</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>CREATE</strong></td>
+                    <td>Acrescentar novos arquivos/tabelas</td>
+                </tr>
+                <tr>
+                    <td><strong>INSERT</strong></td>
+                    <td>Inserir novos dados</td>
+                </tr>
+                <tr>
+                    <td><strong>SELECT</strong></td>
+                    <td>Buscar dados existentes</td>
+                </tr>
+                <tr>
+                    <td><strong>UPDATE</strong></td>
+                    <td>Alterar dados existentes</td>
+                </tr>
+                <tr>
+                    <td><strong>DELETE</strong></td>
+                    <td>Eliminar dados ou arquivos</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2>📊 Os Três Níveis do Banco de Dados</h2>
+        <p>Os bancos de dados são projetados em três níveis de abstração:</p>
+        
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Nível</th>
+                    <th>Nome</th>
+                    <th>Descrição</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1</strong></td>
+                    <td><strong>Conceitual</strong></td>
+                    <td>Não contém detalhes sobre a representação física. Descreve O QUE guardar.</td>
+                </tr>
+                <tr>
+                    <td><strong>2</strong></td>
+                    <td><strong>Lógico</strong></td>
+                    <td>Descreve como as informações estão organizadas internamente. Visão do usuário.</td>
+                </tr>
+                <tr>
+                    <td><strong>3</strong></td>
+                    <td><strong>Físico</strong></td>
+                    <td>Descreve os dados no nível mais baixo. Aspectos de implementação do SGBD.</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2>🎨 Modelo Conceitual</h2>
+        <p>O Modelo Conceitual é a primeira etapa do projeto de banco de dados. É uma representação abstrata e de alto nível dos dados, sem se preocupar com detalhes técnicos.</p>
+        
+        <h3>Finalidade:</h3>
+        <ul>
+            <li>Descrever a estrutura de um banco de dados de forma independente de um SGBD</li>
+            <li>Facilitar a comunicação entre técnicos e não-técnicos</li>
+            <li>Documentar a lógica do negócio</li>
+        </ul>
+
+        <h3>Representação:</h3>
+        <p>Diagrama Entidade-Relacionamento (DER)</p>
+
+        <h3>Principais Conceitos do Modelo E-R:</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Conceito</th>
+                    <th>Descrição</th>
+                    <th>Representação</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Entidade</strong></td>
+                    <td>Conjunto de objetos da realidade sobre os quais se deseja manter informações</td>
+                    <td>Retângulo com nome</td>
+                </tr>
+                <tr>
+                    <td><strong>Atributos</strong></td>
+                    <td>Características das entidades</td>
+                    <td>Círculo ou elipse</td>
+                </tr>
+                <tr>
+                    <td><strong>Relacionamentos</strong></td>
+                    <td>Associação entre entidades</td>
+                    <td>Losango ligado por linhas</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Exemplos de Entidades:</h3>
+        <div class="demo-section">
+            <p><strong>Sistema Bancário:</strong></p>
+            <ul>
+                <li>Cliente</li>
+                <li>Conta Corrente</li>
+                <li>Conta Poupança</li>
+                <li>Agência</li>
+            </ul>
+            <p><strong>Sistema de Controle de Produção:</strong></p>
+            <ul>
+                <li>Produto</li>
+                <li>Empregado</li>
+                <li>Departamento</li>
+                <li>Estoque</li>
+            </ul>
+        </div>
+
+        <h3>Tipos de Atributos:</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                    <th>Exemplo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Compostos</strong></td>
+                    <td>Podem ser divididos em subpartes</td>
+                    <td>Endereço → Rua, Cidade, Estado</td>
+                </tr>
+                <tr>
+                    <td><strong>Simples</strong></td>
+                    <td>Não são divisíveis</td>
+                    <td>Idade, Nome</td>
+                </tr>
+                <tr>
+                    <td><strong>Monovalorados</strong></td>
+                    <td>Valor único para uma entidade</td>
+                    <td>Idade, CPF</td>
+                </tr>
+                <tr>
+                    <td><strong>Multivalorados</strong></td>
+                    <td>Conjunto de valores para a mesma entidade</td>
+                    <td>Titulação, Telefones</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Chave (Identificador):</h3>
+        <div class="warning-block">
+            <p><strong>⚠️ Chave Primária:</strong> É um tipo de restrição de integridade que visa garantir que não possam existir duas ou mais entidades com os mesmos valores identificadores. Representada por um círculo preenchido.</p>
+        </div>
+
+        <h3>Cardinalidade de Relacionamentos:</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Cardinalidade</th>
+                    <th>Significado</th>
+                    <th>Exemplo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>1:1</strong></td>
+                    <td>Um para um</td>
+                    <td>Pessoa ↔ CPF</td>
+                </tr>
+                <tr>
+                    <td><strong>1:N</strong></td>
+                    <td>Um para muitos</td>
+                    <td>Departamento ↔ Funcionários</td>
+                </tr>
+                <tr>
+                    <td><strong>N:N</strong></td>
+                    <td>Muitos para muitos</td>
+                    <td>Aluno ↔ Disciplina</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="content-section">
+        <h2>📋 Modelo Lógico</h2>
+        <p>O Modelo Lógico é a representação organizada das tabelas do banco de dados. Ele mostra nome das tabelas, campos, tipos de dados, chaves primárias e estrangeiras.</p>
+        
+        <h3>Características:</h3>
+        <ul>
+            <li>Dados organizados em linhas e colunas</li>
+            <li>Estrutura simples</li>
+            <li>Fácil consulta</li>
+            <li>Muito utilizado em bancos relacionais</li>
+        </ul>
+
+        <h3>Do Conceitual ao Lógico:</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Modelo Conceitual</th>
+                    <th>Modelo Lógico</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Entidade</td>
+                    <td>Tabela</td>
+                </tr>
+                <tr>
+                    <td>Atributo</td>
+                    <td>Campo/Coluna</td>
+                </tr>
+                <tr>
+                    <td>Relacionamento</td>
+                    <td>Chave Estrangeira</td>
+                </tr>
+                <tr>
+                    <td>Identificador</td>
+                    <td>Chave Primária</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Tipos de Dados Comuns:</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Tipo</th>
+                    <th>Descrição</th>
+                    <th>Exemplo</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>INT</strong></td>
+                    <td>Números inteiros</td>
+                    <td>idade, quantidade</td>
+                </tr>
+                <tr>
+                    <td><strong>VARCHAR</strong></td>
+                    <td>Texto de tamanho variável</td>
+                    <td>nome, email</td>
+                </tr>
+                <tr>
+                    <td><strong>DECIMAL</strong></td>
+                    <td>Números decimais exatos</td>
+                    <td>preço, salário</td>
+                </tr>
+                <tr>
+                    <td><strong>DATE</strong></td>
+                    <td>Apenas data</td>
+                    <td>data_nascimento</td>
+                </tr>
+                <tr>
+                    <td><strong>DATETIME</strong></td>
+                    <td>Data e hora</td>
+                    <td>data_cadastro</td>
+                </tr>
+                <tr>
+                    <td><strong>BOOLEAN</strong></td>
+                    <td>Verdadeiro ou falso</td>
+                    <td>ativo, disponível</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Chaves no Modelo Lógico:</h3>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Chave</th>
+                    <th>Descrição</th>
+                    <th>Características</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Primary Key (PK)</strong></td>
+                    <td>Identifica unicamente cada registro</td>
+                    <td>Não pode repetir, não pode ser nula, deve ser única</td>
+                </tr>
+                <tr>
+                    <td><strong>Foreign Key (FK)</strong></td>
+                    <td>Cria relacionamento entre tabelas</td>
+                    <td>Referencia PK de outra tabela</td>
+                </tr>
+            </tbody>
+        </table>
+
+        <h3>Auto Incremento:</h3>
+        <div class="tip-block">
+            <p><strong>💡 AUTO_INCREMENT:</strong> O banco gera automaticamente o próximo número do campo id. Exemplo: Cliente Pedro → id 1, Cliente Caue → id 2, Cliente Ana → id 3</p>
+        </div>
+
+        <h3>Relacionamento 1:N (Um para Muitos):</h3>
+        <div class="demo-section">
+            <p><strong>Exemplo:</strong> Um curso possui vários alunos.</p>
+            <p><strong>Implementação:</strong> A FK fica no lado "muitos".</p>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>💾 Modelo Físico - MySQL</h2>
+        <p>O Modelo Físico é a implementação concreta do banco de dados em um SGBD específico. Aqui transformamos o modelo lógico em código SQL real.</p>
+        
+        <h3>Acessando o MySQL pelo Terminal:</h3>
+        <div class="code-block">
+            <code>
+mysql -u root -p
+            </code>
+        </div>
+        <p>Senha: <code>senacrs</code></p>
+
+        <h3>Comandos Básicos:</h3>
+        <div class="code-block">
+            <code>
+-- Ver bancos de dados existentes<br>
+SHOW DATABASES;<br><br>
+-- Criar um banco novo<br>
+CREATE DATABASE meu_banco;<br><br>
+-- Usar um banco específico<br>
+USE meu_banco;<br><br>
+-- Ver tabelas do banco atual<br>
+SHOW TABLES;<br><br>
+-- Ver estrutura de uma tabela<br>
+DESCRIBE nome_tabela;<br><br>
+-- Sair do MySQL<br>
+EXIT;
+            </code>
+        </div>
+
+        <h3>Exemplo Prático - Criando Tabelas:</h3>
+        <div class="code-block">
+            <code>
+CREATE DATABASE loja_online;<br>
+USE loja_online;<br><br>
+CREATE TABLE cliente (<br>
+&nbsp;&nbsp;id_cliente INT AUTO_INCREMENT PRIMARY KEY,<br>
+&nbsp;&nbsp;nome VARCHAR(100) NOT NULL,<br>
+&nbsp;&nbsp;email VARCHAR(150) UNIQUE NOT NULL,<br>
+&nbsp;&nbsp;telefone VARCHAR(15)<br>
+);<br><br>
+CREATE TABLE produto (<br>
+&nbsp;&nbsp;id_produto INT AUTO_INCREMENT PRIMARY KEY,<br>
+&nbsp;&nbsp;nome VARCHAR(100) NOT NULL,<br>
+&nbsp;&nbsp;preco DECIMAL(10, 2) NOT NULL,<br>
+&nbsp;&nbsp;estoque INT DEFAULT 0<br>
+);<br><br>
+CREATE TABLE pedido (<br>
+&nbsp;&nbsp;id_pedido INT AUTO_INCREMENT PRIMARY KEY,<br>
+&nbsp;&nbsp;data_pedido DATETIME DEFAULT CURRENT_TIMESTAMP,<br>
+&nbsp;&nbsp;valor_total DECIMAL(10, 2),<br>
+&nbsp;&nbsp;id_cliente INT NOT NULL,<br>
+&nbsp;&nbsp;FOREIGN KEY (id_cliente) REFERENCES cliente(id_cliente)<br>
+);
+            </code>
+        </div>
+
+        <h3>Inserindo Dados:</h3>
+        <div class="code-block">
+            <code>
+INSERT INTO cliente (nome, email, telefone)<br>
+VALUES ('João Silva', 'joao@email.com', '51999887766');<br><br>
+INSERT INTO produto (nome, preco, estoque)<br>
+VALUES ('Notebook Dell', 2999.90, 10);<br><br>
+INSERT INTO pedido (valor_total, id_cliente)<br>
+VALUES (2999.90, 1);
+            </code>
+        </div>
+
+        <h3>Consultando Dados:</h3>
+        <div class="code-block">
+            <code>
+-- Ver todos os clientes<br>
+SELECT * FROM cliente;<br><br>
+-- Ver apenas nome e email<br>
+SELECT nome, email FROM cliente;<br><br>
+-- Ver produtos com preço acima de 100<br>
+SELECT nome, preco FROM produto WHERE preco > 100;<br><br>
+-- Ver pedidos com nome do cliente (JOIN)<br>
+SELECT p.id_pedido, c.nome AS cliente, p.valor_total<br>
+FROM pedido p<br>
+INNER JOIN cliente c ON p.id_cliente = c.id_cliente;
+            </code>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>📝 Exercícios Práticos</h2>
+        
+        <h3>Questão 1 - Academia</h3>
+        <div class="tip-block">
+            <p><strong>Desafio:</strong> Crie um banco de dados chamado <code>academia</code> com:</p>
+            <ol>
+                <li>Insira ao menos 4 alunos</li>
+                <li>Insira ao menos 3 planos diferentes</li>
+                <li>Insira ao menos 5 matrículas, com ao menos 2 já vencidas (data_fim no passado)</li>
+                <li>Faça uma consulta que mostre todos os alunos e todos os campos</li>
+                <li>Faça uma consulta nas matrículas mostrando apenas data_inicio e data_fim</li>
+                <li>Delete as matrículas com data_fim anterior a 2024</li>
+                <li>Altere o e-mail de 1 aluno</li>
+            </ol>
+        </div>
+
+        <h3>Questão 2 - Música</h3>
+        <div class="tip-block">
+            <p><strong>Desafio:</strong> Crie um banco de dados chamado <code>musica</code> com:</p>
+            <ol>
+                <li>Insira ao menos 3 compositores e 3 estilos</li>
+                <li>Insira ao menos 5 músicas, cada uma vinculada a um estilo</li>
+                <li>Faça uma consulta mostrando todos os campos da tabela de músicas</li>
+                <li>Faça uma consulta mostrando apenas o título e a duração das músicas</li>
+                <li>Altere o estilo de 1 música</li>
+                <li>Delete 1 compositor e seus vínculos com as músicas</li>
+            </ol>
+        </div>
+
+        <h3>Questão 3 - Projeto Livre</h3>
+        <div class="tip-block">
+            <p><strong>Desafio:</strong> Crie um banco de dados com nome à sua escolha, com pelo menos 3 tabelas relacionadas:</p>
+            <ol>
+                <li>Insira ao menos 3 registros em cada tabela</li>
+                <li>Faça uma consulta em cada tabela</li>
+                <li>Altere 2 registros em tabelas diferentes</li>
+                <li>Delete 1 registro de 2 tabelas diferentes</li>
+            </ol>
+        </div>
+    </div>
+
+    <div class="content-section">
+        <h2>🎓 Resumo da Aula</h2>
+        <table class="content-table">
+            <thead>
+                <tr>
+                    <th>Conceito</th>
+                    <th>Descrição</th>
+                    <th>Importância</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Banco de Dados</strong></td>
+                    <td>Jeito organizado de guardar informações</td>
+                    <td>🟢 Essencial</td>
+                </tr>
+                <tr>
+                    <td><strong>SGBD</strong></td>
+                    <td>Software para gerenciar bancos de dados</td>
+                    <td>🟢 Essencial</td>
+                </tr>
+                <tr>
+                    <td><strong>Modelo Conceitual</strong></td>
+                    <td>Visão abstrata, O QUE guardar</td>
+                    <td>🟡 Importante</td>
+                </tr>
+                <tr>
+                    <td><strong>Modelo Lógico</strong></td>
+                    <td>Estrutura detalhada, COMO organizar</td>
+                    <td>🟡 Importante</td>
+                </tr>
+                <tr>
+                    <td><strong>Modelo Físico</strong></td>
+                    <td>Implementação real em SQL</td>
+                    <td>🟢 Essencial</td>
+                </tr>
+                <tr>
+                    <td><strong>Chave Primária</strong></td>
+                    <td>Identificador único de cada registro</td>
+                    <td>🟢 Essencial</td>
+                </tr>
+                <tr>
+                    <td><strong>Chave Estrangeira</strong></td>
+                    <td>Relacionamento entre tabelas</td>
+                    <td>🟢 Essencial</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="nav-buttons">
+        <a href="../aulas.html">← Voltar</a>
+    </div>
+
+    <div class="completion-section">
+        <button class="complete-lesson-button" id="completeButton" onclick="completeLesson('aula-12')">
+            ✅ Concluir Esta Aula
+        </button>
+        <div class="completion-message" id="completionMessage" style="display: none;">
+            🎉 Aula concluída! +10 pontos
+        </div>
+    </div>
+
+
+        </main>
+    </div>
+
+    <!-- Widgets Flutuantes -->
+    <div class="floating-widgets" id="floatingWidgets">
+
+        <!-- Widget de Progresso -->
+        <div class="progress-widget">
+            <div class="progress-widget-header">
+                <span class="pie-icon">📊</span>
+                <h2>Seu Progresso</h2>
+            </div>
+            <div class="progress-divider"></div>
+            <p>Complete as aulas para acompanhar sua evolução no curso</p>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressFill"></div>
+                <span class="progress-bar-label" id="progressLabel">0/12 Aulas</span>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="completed-count">0</div>
+                    <div class="stat-label">Aulas Completadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="points-count">0</div>
+                    <div class="stat-label">Pontos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="streak-count">0</div>
+                    <div class="stat-label">Dias Consecutivos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget de Horário e Calendário -->
+        <div class="clock-widget">
+            <div class="clock-header">
+                <div class="clock-time" id="clock">00:00:00</div>
+                <div class="clock-label">Horário de Brasília</div>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-month" id="calendar-month-year">Junho 2024</div>
+                <div class="calendar-weekdays">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+                    <span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div class="calendar-days" id="calendar-days"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botão Seta Flutuante -->
+    <button class="floating-toggle-btn" onclick="toggleFloatingWidgets()" aria-label="Toggle Widgets">
+        <span id="toggleIcon">◀</span>
+    </button>
+
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function toggleFloatingWidgets() {
+            const widgets = document.getElementById('floatingWidgets');
+            const toggleBtn = document.querySelector('.floating-toggle-btn');
+            const toggleIcon = document.getElementById('toggleIcon');
+            widgets.classList.toggle('visible');
+            toggleBtn.classList.toggle('widgets-visible');
+            
+            if (widgets.classList.contains('visible')) {
+                toggleIcon.textContent = '▶';
+            } else {
+                toggleIcon.textContent = '◀';
+            }
+        }
+
+        function createNewNotebook() {
+            const title = prompt('Nome do caderno:');
+            if (title && title.trim()) {
+                const notebook = {
+                    id: Date.now(),
+                    title: title.trim(),
+                    content: '',
+                    date: new Date().toLocaleDateString('pt-BR')
+                };
+                const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                notebooks.unshift(notebook);
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                window.location.href = `cadernos.html?id=${notebook.id}`;
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const brasilia = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            const h = String(brasilia.getHours()).padStart(2, '0');
+            const m = String(brasilia.getMinutes()).padStart(2, '0');
+            const s = String(brasilia.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        }
+
+        function updateCalendar() {
+            const now = new Date();
+            const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                            'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+
+            document.getElementById('calendar-month-year').textContent =
+                `${months[month]} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const container = document.getElementById('calendar-days');
+            container.innerHTML = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                container.appendChild(empty);
+            }
+
+            const highlightDays = [22, 29];
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const el = document.createElement('div');
+                el.className = 'calendar-day';
+                el.textContent = day;
+
+                if (day === today) {
+                    el.classList.add('today');
+                } else if (highlightDays.includes(day)) {
+                    el.classList.add('highlight');
+                }
+
+                container.appendChild(el);
+            }
+        }
+
+        function updateProgress() {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const total = 12;
+            const count = completed.length;
+            const pct = (count / total) * 100;
+
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = `${count}/${total} Aulas`;
+            document.getElementById('completed-count').textContent = count;
+            document.getElementById('points-count').textContent = count * 10;
+            document.getElementById('streak-count').textContent = 0;
+        }
+
+        function loadCompletedLessons() {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            completed.forEach(id => {
+                const card = document.getElementById(`card-${id}`);
+                if (card) card.classList.add('completed');
+            });
+        }
+
+        function completeLesson(lessonId) {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            if (!completed.includes(lessonId)) {
+                completed.push(lessonId);
+                localStorage.setItem('completedLessons', JSON.stringify(completed));
+                
+                const card = document.getElementById(`card-${lessonId}`);
+                if (card) card.classList.add('completed');
+                
+                document.getElementById('completeButton').disabled = true;
+                document.getElementById('completeButton').textContent = '✅ Aula Concluída';
+                document.getElementById('completionMessage').style.display = 'block';
+                
+                updateProgress();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateClock();
+            updateCalendar();
+            updateProgress();
+            loadCompletedLessons();
+            setInterval(updateClock, 1000);
+            setInterval(updateCalendar, 60000);
+        });
+    </script>
+</body>
+</html><arg_value><arg_key>EmptyFile</arg_key><arg_value>false
