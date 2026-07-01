@@ -1,0 +1,695 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 13 - Engenharia de Requisitos</title>
+    <link rel="stylesheet" href="css/dashboard-style.css">
+    <link rel="stylesheet" href="css/curso-style.css">
+    <link rel="stylesheet" href="css/demos-style.css">
+    <link rel="stylesheet" href="css/lesson-style.css">
+</head>
+<body class="dashboard-body">
+
+    <button class="mobile-menu-btn" onclick="toggleMobileSidebar()" aria-label="Menu">☰</button>
+
+    <div class="dashboard">
+
+        <!-- Coluna Lateral Esquerda -->
+        <aside class="sidebar" id="sidebar">
+            <div class="sidebar-logo">
+                <span class="m">Prog</span><span class="u">rama</span><span class="r">ção</span><br/><span class="">FULL</span><span class="i">STACK
+
+                </span>
+            </div>
+
+            <div class="notebook-actions">
+                <button class="btn-novo-caderno" onclick="createNewNotebook()">
+                    <span class="plus">+</span> NOVO CADERNO
+                </button>
+                <button class="btn-dropdown" onclick="window.location.href='cadernos.html'" aria-label="Opções">▼</button>
+            </div>
+
+            <nav class="sidebar-nav">
+                <a href="../aulas.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 9.5L12 3l9 6.5V20a1 1 0 01-1 1H4a1 1 0 01-1-1V9.5z"/><path d="M9 21V12h6v9"/></svg>
+                    PAGINA PRINCIPAL
+                </a>
+                <a href="cadernos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+                    Recentes
+                </a>
+                <a href="favoritos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2l3.09 6.26L22 9.27l-5 4.87L18.18 22 12 18.56 5.82 22 7 14.14l-5-4.87 6.91-1.01z"/></svg>
+                    Favoritos
+                </a>
+                <a href="modulos.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Módulos
+                </a>
+                <a href="desafios.html" class="nav-item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/></svg>
+                    Desafios
+                </a>
+            </nav>
+
+            
+</aside>
+
+        <!-- Área de Conteúdo Principal -->
+        <main class="main-area">
+
+            <!-- Banner Superior -->
+            <header class="banner">
+                <h1>📋 Aula 13 - Engenharia de Requisitos</h1>
+                <p>Prof. Pedro Lobato | UniSenac</p>
+            </header>
+
+            <!-- Catálogo de Aulas -->
+            <section class="lessons-area">
+                <h2>Catálogo de Aulas</h2>
+                <div class="lessons-grid">
+                    <a href="aula-1-listas.html" class="lesson-card" id="card-aula-1" data-lesson="aula-1">
+                        <span class="lesson-badge">Aula 1</span>
+                        <h3>Listas em HTML</h3>
+                        <p>Aprenda a organizar informações com listas ordenadas e não ordenadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">UL</span>
+                            <span class="lesson-tag">OL</span>
+                            <span class="lesson-tag">LI</span>
+                            <span class="lesson-tag">Aninhadas</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-2-css-basico.html" class="lesson-card" id="card-aula-2" data-lesson="aula-2">
+                        <span class="lesson-badge">Aula 2</span>
+                        <h3>CSS Básico</h3>
+                        <p>Entenda os três tipos de CSS e como aplicá-los em suas páginas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Inline</span>
+                            <span class="lesson-tag">Interno</span>
+                            <span class="lesson-tag">Externo</span>
+                            <span class="lesson-tag">Seletores</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-3-propriedades-css.html" class="lesson-card" id="card-aula-3" data-lesson="aula-3">
+                        <span class="lesson-badge">Aula 3</span>
+                        <h3>Propriedades CSS Essenciais</h3>
+                        <p>Domine as propriedades fundamentais para estilizar texto e elementos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Color</span>
+                            <span class="lesson-tag">Background</span>
+                            <span class="lesson-tag">Font</span>
+                            <span class="lesson-tag">Cores</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-4-classes-ids.html" class="lesson-card" id="card-aula-4" data-lesson="aula-4">
+                        <span class="lesson-badge">Aula 4</span>
+                        <h3>Classes e IDs</h3>
+                        <p>Aprenda a usar seletores CSS para estilizar elementos específicos.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Classes</span>
+                            <span class="lesson-tag">IDs</span>
+                            <span class="lesson-tag">Seletores</span>
+                            <span class="lesson-tag">Bordas</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-5-box-model.html" class="lesson-card" id="card-aula-5" data-lesson="aula-5">
+                        <span class="lesson-badge">Aula 5</span>
+                        <h3>Box Model</h3>
+                        <p>Entenda como funciona o modelo de caixa: margin, padding e border.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Margin</span>
+                            <span class="lesson-tag">Padding</span>
+                            <span class="lesson-tag">Border</span>
+                            <span class="lesson-tag">Box-sizing</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-6-display-div-span.html" class="lesson-card" id="card-aula-6" data-lesson="aula-6">
+                        <span class="lesson-badge">Aula 6</span>
+                        <h3>Display e DIV/SPAN</h3>
+                        <p>Diferença entre elementos block e inline, e quando usar DIV ou SPAN.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Display</span>
+                            <span class="lesson-tag">DIV</span>
+                            <span class="lesson-tag">SPAN</span>
+                            <span class="lesson-tag">Inline</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-7-position-zindex.html" class="lesson-card" id="card-aula-7" data-lesson="aula-7">
+                        <span class="lesson-badge">Aula 7</span>
+                        <h3>Position e Z-index</h3>
+                        <p>Posicione elementos em sua página com precisão.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Position</span>
+                            <span class="lesson-tag">Relative</span>
+                            <span class="lesson-tag">Absolute</span>
+                            <span class="lesson-tag">Z-index</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-8-flexbox.html" class="lesson-card" id="card-aula-8" data-lesson="aula-8">
+                        <span class="lesson-badge">Aula 8</span>
+                        <h3>Flexbox</h3>
+                        <p>Crie layouts flexíveis e responsivos com facilidade.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Flex</span>
+                            <span class="lesson-tag">Justify</span>
+                            <span class="lesson-tag">Align</span>
+                            <span class="lesson-tag">Wrap</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-9-semantic-html.html" class="lesson-card" id="card-aula-9" data-lesson="aula-9">
+                        <span class="lesson-badge">Aula 9</span>
+                        <h3>HTML Semântico</h3>
+                        <p>Use tags semânticas para melhorar acessibilidade e SEO.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Header</span>
+                            <span class="lesson-tag">Nav</span>
+                            <span class="lesson-tag">Main</span>
+                            <span class="lesson-tag">Footer</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-10-formularios.html" class="lesson-card" id="card-aula-10" data-lesson="aula-10">
+                        <span class="lesson-badge">Aula 10</span>
+                        <h3>Formulários e Tabelas</h3>
+                        <p>Crie formulários interativos e tabelas organizadas.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Form</span>
+                            <span class="lesson-tag">Input</span>
+                            <span class="lesson-tag">Table</span>
+                            <span class="lesson-tag">Select</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-11-git-github.html" class="lesson-card" id="card-aula-11" data-lesson="aula-11">
+                        <span class="lesson-badge">Aula 11</span>
+                        <h3>Git e GitHub</h3>
+                        <p>Versione seu código com Git e publique projetos no GitHub.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">Commit</span>
+                            <span class="lesson-tag">Push</span>
+                            <span class="lesson-tag">Pull</span>
+                            <span class="lesson-tag">Branch</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-12-banco-de-dados.html" class="lesson-card" id="card-aula-12" data-lesson="aula-12">
+                        <span class="lesson-badge">Aula 12</span>
+                        <h3>Banco de Dados</h3>
+                        <p>Aprenda sobre bancos de dados, modelagem conceitual, lógica e SQL.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">MySQL</span>
+                            <span class="lesson-tag">SGBD</span>
+                            <span class="lesson-tag">SQL</span>
+                            <span class="lesson-tag">Modelagem</span>
+                        </div>
+                    </a>
+
+                    <a href="aula-13-engenharia-requisitos.html" class="lesson-card" id="card-aula-13" data-lesson="aula-13">
+                        <span class="lesson-badge">Aula 13</span>
+                        <h3>Engenharia de Requisitos</h3>
+                        <p>Aprenda a elicitar, analisar e documentar requisitos de software.</p>
+                        <div class="lesson-tags">
+                            <span class="lesson-tag">RNE</span>
+                            <span class="lesson-tag">RF</span>
+                            <span class="lesson-tag">RNF</span>
+                            <span class="lesson-tag">Prototipação</span>
+                        </div>
+                    </a>
+
+                </div>
+            </section>
+
+            <!-- Conteúdo da Aula -->
+            <div class="lesson-content-container">
+                
+                <div class="content-section">
+                    <h2>📚 Introdução à Engenharia de Requisitos</h2>
+                    <p>A área de Engenharia de Requisitos é a "ciência" que estuda as formas de elicitar, analisar, validar e documentar as necessidades de um sistema, servindo como base para o projeto de software.</p>
+                    
+                    <div class="info-block">
+                        <p><strong>💡 Importância:</strong> É considerada um dos pontos mais críticos do desenvolvimento de software, onde ocorre a maior parte dos erros devido à falta de experiência dos clientes em expressar suas necessidades.</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>📋 1. Regras de Negócio (RNE)</h2>
+                    <p>As Regras de Negócio são normas, políticas e decisões de uma organização que definem como o sistema deve operar dentro de seu contexto. Elas são independentes da tecnologia utilizada e servem como a base para a definição dos requisitos funcionais e não funcionais.</p>
+                    
+                    <h3>Características:</h3>
+                    <ul>
+                        <li>Devem ser claras, objetivas e derivadas do domínio do problema</li>
+                        <li>Por representarem decisões organizacionais, podem mudar conforme a estratégia da empresa</li>
+                        <li>Devem ser validadas com os stakeholders</li>
+                    </ul>
+
+                    <h3>Exemplos:</h3>
+                    <div class="tip-block">
+                        <ul>
+                            <li>"Um cliente só pode comprar se estiver cadastrado"</li>
+                            <li>"A média para aprovação na instituição é 6"</li>
+                            <li>"Clientes inadimplentes não podem realizar compras"</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>🔍 2. Levantamento de Requisitos (Elicitação)</h2>
+                    <p>O levantamento é a fase de planejamento onde se identificam e documentam as funções e restrições do software. É considerado um dos pontos mais críticos, onde ocorre a maior parte dos erros devido à falta de experiência dos clientes em expressar suas necessidades.</p>
+                    
+                    <h3>Processo:</h3>
+                    <div class="demo-section">
+                        <ol>
+                            <li><strong>Elicitação:</strong> Coleta direta de informações</li>
+                            <li><strong>Análise:</strong> Verificação de conflitos e viabilidade</li>
+                            <li><strong>Documentação:</strong> Registro formal em documentos como a SRS (Software Requirements Specification)</li>
+                            <li><strong>Validação:</strong> Revisão com o cliente</li>
+                        </ol>
+                    </div>
+
+                    <h3>Técnicas Comuns:</h3>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Técnica</th>
+                                <th>Descrição</th>
+                                <th>Vantagens</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Entrevistas</strong></td>
+                                <td>A técnica mais utilizada, permitindo reformular requisitos</td>
+                                <td>Permite aprofundamento, mas o cliente pode se desviar do objetivo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Workshops/Mini palestras</strong></td>
+                                <td>Discussões em grupo para busca de ideias e sugestões</td>
+                                <td>Gera brainstorming e alinhamento entre stakeholders</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Observação</strong></td>
+                                <td>O analista acompanha o cotidiano da empresa</td>
+                                <td>Entende os processos reais, não apenas o declarado</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Questionários</strong></td>
+                                <td>Coleta de dados de forma assíncrona</td>
+                                <td>Útil para grandes grupos, mas limita profundidade</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-section">
+                    <h2>⚙️ 3. Requisitos Funcionais (RF)</h2>
+                    <p>Os Requisitos Funcionais descrevem o que o sistema deve fazer. Eles representam as funcionalidades, tarefas e serviços que o software entrega ao usuário para satisfazer os objetivos do negócio.</p>
+                    
+                    <h3>Estrutura:</h3>
+                    <ul>
+                        <li>Geralmente são expressos como casos de uso</li>
+                        <li>Utilizam verbos de ação</li>
+                        <li>Para serem testáveis, devem conter: ID único, descrição clara, entradas, saídas e os atores envolvidos</li>
+                    </ul>
+
+                    <h3>Exemplos:</h3>
+                    <div class="code-block">
+                        <code>
+"O sistema deve listar todos os alunos cadastrados em uma turma"<br><br>
+"Permitir que o usuário realize login com e-mail e senha"<br><br>
+"O sistema deve gerar relatórios de vendas mensais"
+                        </code>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>🎯 4. Requisitos Não Funcionais (RNF)</h2>
+                    <p>Os Requisitos Não Funcionais definem como o sistema deve se comportar ou operar, focando em atributos de qualidade e restrições. A violação de um RNF pode tornar o sistema inutilizável (ex: lentidão extrema).</p>
+                    
+                    <h3>Classificação (Sommerville):</h3>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Categoria</th>
+                                <th>Descrição</th>
+                                <th>Exemplos</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Requisitos de Produto</strong></td>
+                                <td>Atributos de qualidade do software</td>
+                                <td>Desempenho (resposta em até 5 segundos), usabilidade, segurança, confiabilidade</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Requisitos Organizacionais</strong></td>
+                                <td>Padrões e processos da organização</td>
+                                <td>Padrões de implementação (ex: usar Python), requisitos operacionais</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Requisitos Externos</strong></td>
+                                <td>Fatores externos ao desenvolvimento</td>
+                                <td>Fatores legais (conformidade com LGPD), éticos</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-section">
+                    <h2>🔄 5. Exemplos Comparativos</h2>
+                    <p>Para distinguir os conceitos, veja como eles se relacionam no mesmo cenário:</p>
+                    
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Conceito</th>
+                                <th>Exemplo</th>
+                                <th>Característica</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Regra de Negócio</strong></td>
+                                <td>"Clientes inadimplentes não podem realizar compras"</td>
+                                <td>Política da empresa</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Requisito Funcional</strong></td>
+                                <td>"Gerar relatório de vendas"</td>
+                                <td>Uma ação do sistema</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Requisito Não Funcional</strong></td>
+                                <td>"O relatório deve estar disponível em formato PDF"</td>
+                                <td>Um modo de operação/formato</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="content-section">
+                    <h2>⚠️ 6. Restrições Técnicas e de Negócio</h2>
+                    <p>As restrições são condições obrigatórias que delimitam o escopo do projeto.</p>
+                    
+                    <h3>Restrições Técnicas:</h3>
+                    <div class="warning-block">
+                        <p>Limitações de infraestrutura e tecnologia, como a capacidade de processamento dos servidores ou o uso obrigatório de uma stack tecnológica específica (ex: Windows 7 ou superior).</p>
+                    </div>
+
+                    <h3>Restrições de Negócio:</h3>
+                    <div class="warning-block">
+                        <p>Regras que orientam a tomada de decisão da empresa, incluindo o orçamento disponível (budget), prazos de entrega (timeboxing) e conformidade legal.</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>🎨 7. Prototipação</h2>
+                    <p>A prototipação é a criação de modelos iniciais para testar e validar ideias antes do desenvolvimento final. É uma ferramenta poderosa para alinhar a visão entre usuários e desenvolvedores.</p>
+                    
+                    <h3>Níveis de Fidelidade:</h3>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Nível</th>
+                                <th>Descrição</th>
+                                <th>Uso Recomendado</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Baixa Fidelidade</strong></td>
+                                <td>Rascunhos em papel ou diagramas simples</td>
+                                <td>Ideal para validar conceitos iniciais com baixo custo</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Alta Fidelidade</strong></td>
+                                <td>Modelos interativos e visuais que se assemelham ao projeto final</td>
+                                <td>Permite que os usuários contribuam na validação de requisitos funcionais e de usabilidade</td>
+                            </tr>
+                        </tbody>
+                    </table>
+
+                    <h3>Benefícios e Riscos:</h3>
+                    <div class="tip-block">
+                        <p><strong>✅ Benefícios:</strong> Facilita a comunicação e antecipa erros</p>
+                        <p><strong>⚠️ Riscos:</strong> Protótipos incompletos podem gerar desconfiança no cliente se não forem bem explicados</p>
+                    </div>
+                </div>
+
+                <div class="content-section">
+                    <h2>🎓 Resumo da Aula</h2>
+                    <table class="content-table">
+                        <thead>
+                            <tr>
+                                <th>Conceito</th>
+                                <th>Descrição</th>
+                                <th>Importância</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td><strong>Engenharia de Requisitos</strong></td>
+                                <td>Ciência de elicitar, analisar, validar e documentar necessidades</td>
+                                <td>🟢 Essencial</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Regras de Negócio (RNE)</strong></td>
+                                <td>Normas e políticas da organização</td>
+                                <td>🟢 Essencial</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Levantamento de Requisitos</strong></td>
+                                <td>Fase de identificação e documentação de funções</td>
+                                <td>🟢 Essencial</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Requisitos Funcionais (RF)</strong></td>
+                                <td>O que o sistema deve fazer</td>
+                                <td>🟢 Essencial</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Requisitos Não Funcionais (RNF)</strong></td>
+                                <td>Como o sistema deve se comportar</td>
+                                <td>🟢 Essencial</td>
+                            </tr>
+                            <tr>
+                                <td><strong>Prototipação</strong></td>
+                                <td>Criação de modelos para validar ideias</td>
+                                <td>🟡 Importante</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <div class="nav-buttons">
+                    <a href="aula-12-banco-de-dados.html">← Aula Anterior</a>
+                </div>
+
+                <div class="completion-section">
+                    <button class="complete-lesson-button" id="completeButton" onclick="completeLesson('aula-13')">
+                        ✅ Concluir Esta Aula
+                    </button>
+                    <div class="completion-message" id="completionMessage" style="display: none;">
+                        🎉 Aula concluída! +10 pontos
+                    </div>
+                </div>
+
+            </div>
+
+        </main>
+    </div>
+
+    <!-- Widgets Flutuantes -->
+    <div class="floating-widgets" id="floatingWidgets">
+
+        <!-- Widget de Progresso -->
+        <div class="progress-widget">
+            <div class="progress-widget-header">
+                <span class="pie-icon">📊</span>
+                <h2>Seu Progresso</h2>
+            </div>
+            <div class="progress-divider"></div>
+            <p>Complete as aulas para acompanhar sua evolução no curso</p>
+            <div class="progress-bar-track">
+                <div class="progress-bar-fill" id="progressFill"></div>
+                <span class="progress-bar-label" id="progressLabel">0/13 Aulas</span>
+            </div>
+            <div class="progress-stats">
+                <div class="stat-box">
+                    <div class="stat-number" id="completed-count">0</div>
+                    <div class="stat-label">Aulas Completadas</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="points-count">0</div>
+                    <div class="stat-label">Pontos</div>
+                </div>
+                <div class="stat-box">
+                    <div class="stat-number" id="streak-count">0</div>
+                    <div class="stat-label">Dias Consecutivos</div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Widget de Horário e Calendário -->
+        <div class="clock-widget">
+            <div class="clock-header">
+                <div class="clock-time" id="clock">00:00:00</div>
+                <div class="clock-label">Horário de Brasília</div>
+            </div>
+            <div class="calendar-body">
+                <div class="calendar-month" id="calendar-month-year">Junho 2024</div>
+                <div class="calendar-weekdays">
+                    <span>Dom</span><span>Seg</span><span>Ter</span><span>Qua</span>
+                    <span>Qui</span><span>Sex</span><span>Sáb</span>
+                </div>
+                <div class="calendar-days" id="calendar-days"></div>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- Botão Seta Flutuante -->
+    <button class="floating-toggle-btn" onclick="toggleFloatingWidgets()" aria-label="Toggle Widgets">
+        <span id="toggleIcon">◀</span>
+    </button>
+
+    <script>
+        function toggleMobileSidebar() {
+            document.getElementById('sidebar').classList.toggle('open');
+        }
+
+        function toggleFloatingWidgets() {
+            const widgets = document.getElementById('floatingWidgets');
+            const toggleBtn = document.querySelector('.floating-toggle-btn');
+            const toggleIcon = document.getElementById('toggleIcon');
+            widgets.classList.toggle('visible');
+            toggleBtn.classList.toggle('widgets-visible');
+            
+            if (widgets.classList.contains('visible')) {
+                toggleIcon.textContent = '▶';
+            } else {
+                toggleIcon.textContent = '◀';
+            }
+        }
+
+        function createNewNotebook() {
+            const title = prompt('Nome do caderno:');
+            if (title && title.trim()) {
+                const notebook = {
+                    id: Date.now(),
+                    title: title.trim(),
+                    content: '',
+                    date: new Date().toLocaleDateString('pt-BR')
+                };
+                const notebooks = JSON.parse(localStorage.getItem('notebooks') || '[]');
+                notebooks.unshift(notebook);
+                localStorage.setItem('notebooks', JSON.stringify(notebooks));
+                window.location.href = `cadernos.html?id=${notebook.id}`;
+            }
+        }
+
+        function updateClock() {
+            const now = new Date();
+            const brasilia = new Date(now.toLocaleString('en-US', { timeZone: 'America/Sao_Paulo' }));
+            const h = String(brasilia.getHours()).padStart(2, '0');
+            const m = String(brasilia.getMinutes()).padStart(2, '0');
+            const s = String(brasilia.getSeconds()).padStart(2, '0');
+            document.getElementById('clock').textContent = `${h}:${m}:${s}`;
+        }
+
+        function updateCalendar() {
+            const now = new Date();
+            const months = ['Janeiro','Fevereiro','Março','Abril','Maio','Junho',
+                            'Julho','Agosto','Setembro','Outubro','Novembro','Dezembro'];
+            const year = now.getFullYear();
+            const month = now.getMonth();
+            const today = now.getDate();
+
+            document.getElementById('calendar-month-year').textContent =
+                `${months[month]} ${year}`;
+
+            const firstDay = new Date(year, month, 1).getDay();
+            const daysInMonth = new Date(year, month + 1, 0).getDate();
+            const container = document.getElementById('calendar-days');
+            container.innerHTML = '';
+
+            for (let i = 0; i < firstDay; i++) {
+                const empty = document.createElement('div');
+                empty.className = 'calendar-day empty';
+                container.appendChild(empty);
+            }
+
+            const highlightDays = [22, 29];
+
+            for (let day = 1; day <= daysInMonth; day++) {
+                const el = document.createElement('div');
+                el.className = 'calendar-day';
+                el.textContent = day;
+
+                if (day === today) {
+                    el.classList.add('today');
+                } else if (highlightDays.includes(day)) {
+                    el.classList.add('highlight');
+                }
+
+                container.appendChild(el);
+            }
+        }
+
+        function updateProgress() {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            const total = 13;
+            const count = completed.length;
+            const pct = (count / total) * 100;
+
+            document.getElementById('progressFill').style.width = pct + '%';
+            document.getElementById('progressLabel').textContent = `${count}/${total} Aulas`;
+            document.getElementById('completed-count').textContent = count;
+            document.getElementById('points-count').textContent = count * 10;
+            document.getElementById('streak-count').textContent = 0;
+        }
+
+        function loadCompletedLessons() {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            completed.forEach(id => {
+                const card = document.getElementById(`card-${id}`);
+                if (card) card.classList.add('completed');
+            });
+        }
+
+        function completeLesson(lessonId) {
+            const completed = JSON.parse(localStorage.getItem('completedLessons') || '[]');
+            if (!completed.includes(lessonId)) {
+                completed.push(lessonId);
+                localStorage.setItem('completedLessons', JSON.stringify(completed));
+                
+                const card = document.getElementById(`card-${lessonId}`);
+                if (card) card.classList.add('completed');
+                
+                document.getElementById('completeButton').disabled = true;
+                document.getElementById('completeButton').textContent = '✅ Aula Concluída';
+                document.getElementById('completionMessage').style.display = 'block';
+                
+                updateProgress();
+            }
+        }
+
+        document.addEventListener('DOMContentLoaded', () => {
+            updateClock();
+            updateCalendar();
+            updateProgress();
+            loadCompletedLessons();
+            setInterval(updateClock, 1000);
+            setInterval(updateCalendar, 60000);
+        });
+    </script>
+</body>
+</html>
